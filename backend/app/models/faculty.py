@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This contains the faculty class"""
 
-from backend.models import db
+from app.models import db
 
 
 class Faculty(db.Model):

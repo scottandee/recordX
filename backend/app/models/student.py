@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This contains the student class"""
 
-from backend.models import db
+from app.models import db
 
 
 gender = ["Male", "Female"]
