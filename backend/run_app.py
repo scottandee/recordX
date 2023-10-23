@@ -5,6 +5,7 @@ app and runs it"""
 from app import create_app, db
 from config import Config
 
+
 if __name__ == "__main__":
     app = create_app(Config)
     with app.app_context():

@@ -117,9 +117,9 @@ def test_faculty_search_no_filter(client, app):
 
 def test_faculty_search_filter(client, app):
     """This tests the faculty search endpoint"""
-    data1 = {"name": "agric", "description": "farm house"}
-    data2 = {"name": "agri", "description": "farm house"}
-    data3 = {"name": "agr", "description": "farm house"}
+    data1 = {"name": "agric", "description": "farm house1"}
+    data2 = {"name": "agri", "description": "farm house2"}
+    data3 = {"name": "agr", "description": "farm house3"}
     r = client.post("/api/v1/faculties", json=data1)
     r = client.post("/api/v1/faculties", json=data2)
     r = client.post("/api/v1/faculties", json=data3)

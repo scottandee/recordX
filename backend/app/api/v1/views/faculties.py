@@ -39,6 +39,7 @@ def get_one_faculty(id):
 @api_v1.route("/faculties", methods=["POST"], strict_slashes=False)
 def create_faculty():
     """This creates a new faculty"""
+    # error checking
     if not request.is_json:
         abort(400, "Not a JSON")
     if "name" not in request.json.keys():
@@ -110,7 +111,7 @@ def faculties_search():
         search = "[a-zA-Z]*{}[a-zA-Z]*".format(request_data.get("pattern"))
         for fac in fac_list:
             res = re.search(search, fac["name"], re.IGNORECASE)
-            if res is None:
+            if res is not None:
                 filtered.append(fac)
         return filtered
     else:
