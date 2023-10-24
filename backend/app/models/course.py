@@ -15,3 +15,4 @@ class Course(db.Model):
     instructor = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(128), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey("departments.id"))
+    students = db.relationship("Enrollment", back_populates="course")
