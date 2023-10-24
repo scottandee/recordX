@@ -18,7 +18,7 @@ class Student(db.Model):
     last_name = db.Column(db.String(30), nullable=False)
     gender = db.Column(db.Enum(*gender), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    address = db.Column(db.String(80), unique=True, nullable=False)
+    address = db.Column(db.String(80), nullable=False)
     dob = db.Column(db.Date, nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey("departments.id"))
     courses = db.relationship("Enrollment", back_populates="student")

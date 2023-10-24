@@ -8,3 +8,4 @@ from app.api.v1.views.index import *
 from app.api.v1.views.faculties import *
 from app.api.v1.views.departments import *
 from app.api.v1.views.courses import *
+from app.api.v1.views.students import *

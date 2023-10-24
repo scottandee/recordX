@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
 import pytest
+from datetime import date
 from app import create_app, db
 from app.models.faculty import Faculty
 from app.models.department import Department
 from app.models.course import Course
+from app.models.student import Student
 
 
 class TestConfig():
@@ -44,7 +46,18 @@ def app():
         )
         course.department = department
         db.session.add(course)
+
+        student = Student(
+            first_name="Maddock", last_name="James",
+            matric_number="20/58EC/00878",
+            gender="Male", email="sc@gmail.com",
+            address="73, Kings street",
+            dob=date(2004, 3, 3)
+        )
+        student.department = department
+        db.session.add(student)
         db.session.commit()
+
     yield app
 
     with app.app_context():
