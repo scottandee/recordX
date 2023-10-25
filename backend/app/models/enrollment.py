@@ -4,7 +4,7 @@
 from app.models import db
 
 
-grades = ["A", "B", "C", "D", "E"]
+grades = ["A", "B", "C", "D", "E", "Nil"]
 
 
 class Enrollment(db.Model):

@@ -7,6 +7,7 @@ from app.models.faculty import Faculty
 from app.models.department import Department
 from app.models.course import Course
 from app.models.student import Student
+from app.models.enrollment import Enrollment
 
 
 class TestConfig():
@@ -56,6 +57,12 @@ def app():
         )
         student.department = department
         db.session.add(student)
+        e = Enrollment(grade="A")
+        e.course = course
+        student.courses.append(e)
+        db.session.add(e)
+        db.session.add(student)
+        db.session.add(course)
         db.session.commit()
 
     yield app

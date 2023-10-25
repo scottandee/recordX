@@ -21,4 +21,6 @@ class Student(db.Model):
     address = db.Column(db.String(80), nullable=False)
     dob = db.Column(db.Date, nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey("departments.id"))
-    courses = db.relationship("Enrollment", back_populates="student")
+    courses = db.relationship(
+        "Enrollment", back_populates="student", cascade='all, delete-orphan'
+    )
