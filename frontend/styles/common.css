@@ -1,0 +1,243 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+section.main-content{
+    display: flex;
+    flex-direction: column;
+    margin: 0 4%;
+}
+section.actions{
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+    height: 50px;
+}
+form.search-box{
+    display: flex;
+    align-items: center;
+    border: 2px solid #6C63FF;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 700px;
+}
+form.search-box input{
+    background: transparent;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    flex: 1;
+    width: 85%;
+    padding: 0px 3%;
+}
+
+form.search-box button{
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    width: 15%;
+    height: 100%;
+    background-color: #6C63FF;
+    cursor: pointer;
+}
+form.search-box button:hover{
+    background-color: #661bff;
+}
+form.search-box button .fa-search{
+    color: white;
+    font-size: 17px;
+}
+button.create-new{
+    border: 0;
+    background-color: #6C63FF;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+button.create-new:hover{
+    background-color: #661bff;
+}
+button.create-new .fa-plus, button.create-new p{
+    color: white;
+    font-size: 17px;
+}
+button.create-new p{
+    margin-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+::placeholder{
+    color: #6C63FF;
+    font-family: 'Montserrat', sans-serif;
+}
+section.resources{
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 30px;
+    text-align: center;
+    margin-bottom: 5%;
+}
+section.resources img{
+    width: 40%;
+}
+.card{
+    display: flex;
+    height: 200px;
+    border: 2px solid #6C63FF;
+    border-radius: 5px;
+}
+div.card:hover{
+    transform: scale(1.1);
+    transition: .2s;
+}
+.fa-ellipsis-v{
+    width: 5%;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #6C63FF;
+}
+div.card-content{
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    padding: 20px 0px 20px 10px;
+}
+
+@media (max-width: 970px) {
+    section.resources{
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        gap: 20px;
+    }
+    section.actions{
+        height: 40px;
+    }
+}
+@media (max-width: 690px) {
+    section.resources{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    section.actions{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 590px) {
+    button.create-new .fa-plus,
+    button.create-new p, 
+    form.search-box button,
+     .fa-search,
+      form.search-box input, p{
+        font-size: 14px;
+    }
+    button.create-new p{
+        margin-left: 5px;
+    }
+    button.create-new{
+        padding: 10px;
+    }
+    section.actions{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 420px){
+    .card{
+        height: 175px;
+    }
+    button.create-new .fa-plus,
+    button.create-new p,
+    form.search-box button,
+    .fa-search, form.search-box input, p{
+        font-size: 13px;
+    }    
+}
+@media (max-width: 380px){
+    button.create-new p{
+        display: none;
+    }
+    button.create-new{
+        width: 60px;
+        align-items: center;
+        justify-content: center;
+    }
+    div.card:hover{
+        transform: scale(1.05);
+        transition: .2s;
+    }
+}
+@media (max-width: 320px){
+    form.search-box {
+        width: 70%;
+    }
+}
+div.resource-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+.resource-data h4{
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.resource-data p{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+form.search-box input{
+    width: 60%;
+}
+#search-dropdown{
+    outline: none;
+    border: none;
+    border-left: 2px solid #6C63FF;
+    background: transparent;
+    font-size: 14px;
+    color: #6C63FF;
+    height: 100%;
+    font-family: inherit;
+    min-width: 50px;
+    width: 20%;
+}
+@media (max-width: 590px) {
+    .resource-data h4, .resource-data p{
+        font-size: 13px;
+    }
+    .resource-data p{
+        margin-bottom: 4px;
+    }
+}
+@media (max-width: 525px) {
+    form.search-box input{
+        padding-right: 0px;
+    }
+    button.create-new p{
+        display: none;
+    }
+    button.create-new{
+        width: 60px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media (max-width: 320px) {
+    .resource-data h4, .resource-data p{
+        font-size: 12px;
+    }
+    .resource-data p{
+        margin-bottom: 3px;
+    }    
+}
