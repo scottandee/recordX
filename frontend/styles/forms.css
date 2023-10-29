@@ -1,0 +1,68 @@
+.popup-form{
+    margin: auto;
+    border: 1px solid #6C63FF;
+    border-radius: 10px;
+    width: 375px;
+}
+.create-new-banner{
+    width: 100%;
+    background-color: #6C63FF;
+    height: 50px;
+}
+.create-new-form{
+    padding: 20px 30px;
+}
+.create-new-form h3{
+    color: #6C63FF;
+    margin-bottom: 10px;
+}
+.fa-close{
+    display: block;
+    color: white;
+    text-align: right;
+    position: relative;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+label{
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+.input-fields input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #6C63FF;
+}
+.input-fields input:focus{
+    outline: 2px solid #6C63FF;
+    border: 0;
+}
+.create {
+    padding: 10px;
+    background-color: #6C63FF;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    text-align: right;
+}
+.popup-form-button-sect{
+    text-align: right;
+}
+@media (max-width: 590px){
+    label{
+        font-size: 13px;
+    }
+}
+@media (max-width: 320px){
+    label{
+        font-size: 12px;
+    }
+}
