@@ -1,11 +1,12 @@
-$(document).ready(function () {
-    const open = document.querySelector("[data-open-modal]");
-    const close = document.querySelector("[data-close-modal]");
-    const modal = document.querySelector("[data-modal]");
-    open.addEventListener("click", () => {
-        modal.showModal()
-    });
-    close.addEventListener("click", () =>{
-        modal.close()
-    });
+$(function () {
+  const open = $('[data-open-modal]');
+  const close = $('[data-close-modal]');
+  const modal = $('[data-modal]');
+
+  open.on('click', () => {
+    modal[0].showModal();
+  });
+  close.on('click', () => {
+    modal[0].close();
+  });
 });

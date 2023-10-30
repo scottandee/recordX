@@ -14,15 +14,15 @@
 }
 .create-new-form h3{
     color: #6C63FF;
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
-.fa-close{
+.fa-times{
     display: block;
     color: white;
     text-align: right;
     position: relative;
     top: 15px;
-    right: 15px;
+    left: 350px;
     cursor: pointer;
 }
 .input-fields{
@@ -34,12 +34,12 @@ label{
     margin-bottom: 5px;
     font-size: 15px;
 }
-.input-fields input {
+.input-fields input, select#res-filter{
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #6C63FF;
 }
-.input-fields input:focus{
+.input-fields input:focus, select#res-filter:focus{
     outline: 2px solid #6C63FF;
     border: 0;
 }
@@ -55,6 +55,9 @@ label{
 }
 .popup-form-button-sect{
     text-align: right;
+}
+select#res-filter{
+    background: white;
 }
 @media (max-width: 590px){
     label{

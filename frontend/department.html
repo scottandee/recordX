@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/c3ac992290.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="scripts/form.js "></script>
+    <script src="scripts/department.js "></script>
     <title>recordX</title>
 </head>
 <body>
@@ -38,109 +39,50 @@
 
     <section class="main-content">
         <section class="actions">
-            <form action="POST" class="search-box">
-                <input type="text" placeholder="Search...">
-                <select name="faculty" id="search-dropdown" size="1">
-                    <option value="select">Select a Faculty</option>
-                    <option value="Engineering">Faculty of Engineering</option>
-                    <option value="Law">Law</option>
-                    <option value="Sciences">Sciences</option>
-                    <option value="Medcine">Medicine</option>
+            <form class="search-box">
+                <input type="text" name="pattern" placeholder="Search...">
+                <select name="faculty_id" id="search-dropdown" size="1">
+                    <option value="">Select a Faculty</option>
                 </select>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
             <button class="create-new" data-open-modal>
                 <i class="fas fa-plus"></i><p>Create Department<p>
             </button>
+
             <dialog class="popup-form" data-modal>
                 <div class="create-new-banner">
-                    <i class="fa fa-close" data-close-modal></i>
+                    <i class="fas fa-times" data-close-modal></i>
                 </div>
-                <form action="#" class="create-new-form">
+
+                <form class="create-new-form" id="dept-form">
                     <h3>Create Department</h3>
+
+                    <div class="input-fields">
+                        <label for="res-filter">Select a Faculty</label>
+                        <select name="faculty_id" id="res-filter" required>
+                        </select>
+                    </div>
                     <div class="input-fields">
                         <label for="name">Name</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="input-fields">
                         <label for="description">Description</label>
-                        <input type="text" id="description" required>
+                        <input type="text" id="description" name="description" required>
                     </div>
                     <div class="input-fields">
                         <label for="hod">Head of Department</label>
-                        <input type="text" id="hod" required>
+                        <input type="text" id="hod" name="hod" required>
                     </div>
                     <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
                 </form>
+
             </dialog>
         </section>
+
+
         <section class="resources">
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
             <div class="card dept-card">
                 <img src="images/faculty.png" alt="">
                 <div class="card-content">
