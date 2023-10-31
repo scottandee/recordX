@@ -8,10 +8,21 @@
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/forms.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+    
     <script src="https://kit.fontawesome.com/c3ac992290.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="scripts/form.js "></script>
+    <script src="scripts/course.js "></script>
+
+
     <title>recordX</title>
 </head>
 <body>
@@ -34,99 +45,58 @@
 
     <section class="main-content">
         <section class="actions">
-            <form action="POST" class="search-box">
-                <input type="text" placeholder="Search...">
-                <select name="faculty" id="search-dropdown" size="1">
-                    <option value="select">Select a Department</option>
-                    <option value="Engineering">Department of Mechanical Engineering</option>
-                    <option value="Law">Department of Criminology</option>
-                    <option value="Sciences">Department of Biology</option>
-                    <option value="Medcine">Department of Medicine</option>
+
+            <form class="search-box">
+                <input type="text" name ="pattern" placeholder="Search...">
+                <select name="department_id" id="search-dropdown" size="1">
+                    <option value="">Select a Department</option>
                 </select>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <button class="create-new">
-                <i class="fas fa-plus"></i><p>Create Department<p>
+
+
+            <button class="create-new" data-open-modal>
+                <i class="fas fa-plus"></i><p>Create Course<p>
             </button>
+
+
+            <dialog class="popup-form" data-modal>
+                <div class="create-new-banner">
+                    <i class="fas fa-times" data-close-modal></i>
+                </div>
+                <form class="create-new-form" id="course-form">
+                    <h3>Create Course</h3>
+    
+                    <div class="input-fields">
+                        <label for="res-filter">Select a Department</label>
+                        <select name="department_id" id="res-filter" required>
+                        </select>
+                    </div>
+                    <div class="input-fields">
+                        <label for="title">Course Title</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="input-fields">
+                        <label for="description">Description</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <div class="input-fields">
+                        <label for="instructor">Instructor</label>
+                        <input type="text" id="instructor" name="instructor" required>
+                    </div>
+                    <div class="input-fields">
+                        <label for="code">Course Code</label>
+                        <input type="text" id="code" name="code" required>
+                    </div>
+                    <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
+                </form>
+
+
+        </dialog>
         </section>
+
+
         <section class="resources">
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Title:</h4><p>Applied Programming</p>
-                        <h4>Description:</h4><p>Using programming to solve real world problems</p>
-                        <h4>Instructor:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
             <div class="card">
                 <img src="images/faculty.png" alt="">
                 <div class="card-content">

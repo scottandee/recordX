@@ -61,7 +61,7 @@ $(document).ready(() => {
   });
 });
 
-// This section of code loads up all of the faculties
+// This section of code loads up all of the depatrtments
 // from the db when the page is loaded
 $(document).ready(() => {
   $.ajax({
