@@ -40,6 +40,18 @@ form.search-box input{
     width: 85%;
     padding: 0px 3%;
 }
+#search-dropdown{
+    outline: none;
+    border: none;
+    border-left: 2px solid #6C63FF;
+    background: transparent;
+    font-size: 14px;
+    color: #6C63FF;
+    height: 100%;
+    font-family: inherit;
+    min-width: 50px;
+    width: 20%;
+}
 
 form.search-box button{
     border: 0;
@@ -70,7 +82,7 @@ button.create-new:hover{
 }
 button.create-new .fa-plus, button.create-new p{
     color: white;
-    font-size: 17px;
+    font-size: 15px;
 }
 button.create-new p{
     margin-left: 10px;
@@ -196,21 +208,6 @@ div.resource-data{
 .resource-data p{
     font-size: 14px;
     margin-bottom: 5px;
-}
-form.search-box input{
-    width: 60%;
-}
-#search-dropdown{
-    outline: none;
-    border: none;
-    border-left: 2px solid #6C63FF;
-    background: transparent;
-    font-size: 14px;
-    color: #6C63FF;
-    height: 100%;
-    font-family: inherit;
-    min-width: 50px;
-    width: 20%;
 }
 @media (max-width: 590px) {
     .resource-data h4, .resource-data p{
