@@ -7,6 +7,7 @@ function loadFilters (data, target, name) {
   let option = $('<option>');
   const targetElem = $(target);
   option.text('Select a ' + name);
+  option.attr('value', '')
   targetElem.empty();
   targetElem.append(option);
 
@@ -31,6 +32,34 @@ function loadCourseFilters (data, target, name) {
     option.attr('value', data[i].id);
     option.text(data[i].code + ': ' + data[i].title);
     targetElem.append(option);
+  }
+}
+
+function loadStudents (studs) {
+  const students = $('section.resources');
+  for (let i = 0; i < Object.keys(studs).length; i++) {
+    const card = $('<div>').addClass('card');
+    const img = $('<img>');
+    img.attr('src', 'images/faculty.png');
+    card.append(img);
+
+    const content = $('<div>').addClass('card-content');
+    const resData = $('<div>').addClass('resource-data');
+
+    resData.append($('<h4>').text('First Name:'));
+    resData.append($('<p>').text(studs[i].first_name));
+
+    resData.append($('<h4>').text('Last Name:'));
+    resData.append($('<p>').text(studs[i].last_name));
+
+    resData.append($('<h4>').text('Matric No:'));
+    resData.append($('<p>').text(studs[i].matric_number));
+
+    content.append(resData);
+    card.append(content);
+    card.append($('<i>').addClass('fas fa-ellipsis-v'));
+
+    students.append(card);
   }
 }
 
@@ -176,6 +205,50 @@ $(document).ready(() => {
       data: JSON.stringify(data),
       success: (data) => {
         studentForm[0].reset();
+      }
+    });
+  });
+});
+
+// This section of code loads up all of the students
+// from the db when the page is loaded
+$(document).ready(() => {
+  $.ajax({
+    type: 'POST',
+    url: 'http://0.0.0.0:5000/api/v1/students_search',
+    datatype: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify({}),
+    success: (students) => {
+      $('section.resources').empty();
+      loadStudents(students);
+    }
+  });
+});
+
+
+// This section of code handles the search feature.
+// Whatever data that is entered by the user is
+// relayed to the server. The response os then
+// displayed on the screen
+$(document).ready(() => {
+  const searchFormEl = $('form.search-box');
+
+  searchFormEl.on('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(searchFormEl[0]);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    $.ajax({
+      type: 'POST',
+      url: 'http://0.0.0.0:5000/api/v1/students_search',
+      datatype: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: (students) => {
+        $('section.resources').empty();
+        console.log(students);
+        loadStudents(students);
       }
     });
   });
