@@ -2,27 +2,26 @@
     margin: auto;
     border: 1px solid #6C63FF;
     border-radius: 10px;
-    width: 375px;
+    width: 450px;
 }
 .create-new-banner{
     width: 100%;
     background-color: #6C63FF;
     height: 50px;
 }
-.create-new-form{
+.create-new-form, #enrollments{
     padding: 20px 30px;
 }
 .create-new-form h3{
     color: #6C63FF;
     margin-bottom: 16px;
 }
-.fa-times{
+.create-new-banner i.fa-times{
     display: block;
     color: white;
     text-align: right;
-    position: relative;
-    top: 15px;
-    left: 350px;
+    padding-top: 15px;
+    padding-right: 15px;
     cursor: pointer;
 }
 .input-fields{
@@ -34,12 +33,18 @@ label{
     margin-bottom: 5px;
     font-size: 15px;
 }
-.input-fields input, select#res-filter{
+.input-fields input,
+select#res-filter,
+.added-course, #grade,
+#courses {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #6C63FF;
 }
-.input-fields input:focus, select#res-filter:focus{
+.input-fields input:focus,
+select#res-filter:focus,
+.added-course:focus, #grade:focus
+#courses:focus{
     outline: 2px solid #6C63FF;
     border: 0;
 }
@@ -55,17 +60,67 @@ label{
 }
 .popup-form-button-sect{
     text-align: right;
+    padding: 20px 0px;
 }
-select#res-filter{
+select#res-filter, #grade, #courses{
     background: white;
+}
+.added-course{
+    margin-bottom: 5px;
+    font-size: 14px;
+    list-style: decimal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-course{
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+.select-course select{
+    width: 80%;
+    margin-right: 5px;
+    
+}
+.added-course i{
+    color: #6C63FF;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+div.radio{
+    flex-direction: row;
+}
+input#gender {
+    margin-right: 5px;
+    display: block;
+}
+.gender-label{
+    margin-right: 10px;
 }
 @media (max-width: 590px){
     label{
         font-size: 13px;
     }
+    
 }
 @media (max-width: 320px){
     label{
         font-size: 12px;
+    }
+    .input-fields{
+        margin-bottom: 15px;
+    }
+    .create-new-form{
+        padding: 10px 15px;
+    }
+    .selected-courses p {
+        font-size: 12px;
+        padding: 5px;
+    }
+    #grade{
+        font-size: 12px;
+        justify-content: center;
     }
 }
