@@ -31,7 +31,7 @@ def get_all_courses_for_student(student_id):
 
 
 @api_v1.route(
-    "students/<int:student_id>/courses/<course_id>",
+    "students/<int:student_id>/courses/<int:course_id>",
     methods=["POST"], strict_slashes=False
 )
 def link_course_to_student(student_id, course_id):
