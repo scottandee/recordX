@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/options.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,8 +19,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script src="scripts/form.js "></script>
     <script src="scripts/student.js "></script>
+    <script src="scripts/form.js "></script>
 
 
     <title>recordX</title>
@@ -128,7 +129,6 @@
                 </form>
         </section>
 
-
         <section class="resources">
             <div class="card">
                 <img src="images/faculty.png" alt="">
@@ -140,93 +140,25 @@
                         <h4>Department:</h4><p>Department of Microbiology</p>
                     </div>
                 </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
+                <div id="options">
+                    <i class="fas fa-ellipsis-v options-icon"></i>
+                    <div class="options-dropdown">
+                        <div class="update"><p>Update</p></div>
+                        <div class="delete" data-open-confirm=""><p>Delete</p></div>
                     </div>
                 </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
-            <div class="card dept-card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>First Name:</h4><p>James</p>
-                        <h4>Last Name:</h4><p>McConkey</p>
-                        <h4>Matric No:</h4><p>20/67MED/9890</p>
-                        <h4>Department:</h4><p>Department of Microbiology</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
             </div>
         </section>
+        <dialog id="confirm-delete" data-confirm>
+            <div class="create-new-banner">
+                <i class="fas fa-times" data-close-confirm></i>
+            </div>
+            <h4>Are you sure you want to delete this?</h4>
+            <div class="confirm-delete-buttons">
+                <button class="create" id="delete-yes">Yes</button>
+                <button class="create" data-close-confirm>No</button>
+            </div>                                                    
+        </dialog>   
     </section>
 
     <footer>

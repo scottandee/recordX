@@ -7,7 +7,7 @@ function loadFilters (data, target, name) {
   let option = $('<option>');
   const targetElem = $(target);
   option.text('Select a ' + name);
-  option.attr('value', '')
+  option.attr('value', '');
   targetElem.empty();
   targetElem.append(option);
 
@@ -35,6 +35,17 @@ function loadCourseFilters (data, target, name) {
   }
 }
 
+// This fuction sends a delete request for the specified
+// id and resource name
+function doDelete (id, resourceName) {
+  $.ajax({
+    type: 'DELETE',
+    url: 'http://0.0.0.0:5000/api/v1/' + resourceName + '/' + id,
+    success: () => {
+      alert(deleted);
+    }
+  });
+}
 function loadStudents (studs) {
   const students = $('section.resources');
   for (let i = 0; i < Object.keys(studs).length; i++) {
@@ -55,13 +66,36 @@ function loadStudents (studs) {
     resData.append($('<h4>').text('Matric No:'));
     resData.append($('<p>').text(studs[i].matric_number));
 
+    const resOptions = $('<div>').attr('id', 'options');
+    const optionsDropdown = $('<div>').addClass('options-dropdown');
+    optionsDropdown.attr('data-student-id', studs[i].id);
+
+    const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
+
+    const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
+    deleteOption.click(() => {
+      if (confirm('Are you sure you want to delete this?')) {
+        doDelete(studs[i].id, 'students');
+      }
+    });
+
+    optionsDropdown.append(updateOption, deleteOption);
+
+    resOptions.append($('<i>').addClass('fas fa-ellipsis-v options-icon'));
+    resOptions.append(optionsDropdown);
+
     content.append(resData);
-    card.append(content);
-    card.append($('<i>').addClass('fas fa-ellipsis-v'));
+    card.append(content, resOptions);
 
     students.append(card);
   }
 }
+
+$(document).ready(() => {
+  $('#delete-yes').click(() => {
+    const studentId = $('#delete-yes').parent().attr('data-student-id');
+  });
+});
 
 // This function dynamically creates a grade dropdown
 function createGradeDropDown (courseId) {
@@ -225,7 +259,6 @@ $(document).ready(() => {
     }
   });
 });
-
 
 // This section of code handles the search feature.
 // Whatever data that is entered by the user is

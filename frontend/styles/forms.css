@@ -4,6 +4,18 @@
     border-radius: 10px;
     width: 450px;
 }
+#confirm-delete{
+    margin: auto;
+    border: 1px solid #6C63FF;
+    border-radius: 10px;
+    width: 375px;
+}
+#confirm-delete h4{
+    margin-top: 15px;
+}
+.confirm-delete-buttons{
+    padding: 20px;
+}
 .create-new-banner{
     width: 100%;
     background-color: #6C63FF;

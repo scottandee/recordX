@@ -1,0 +1,42 @@
+#options {
+    position: relative;
+    display: flex;
+    height: 30px;
+}
+.options-icon{
+    cursor: pointer;
+    padding: 0px 5px;
+    font-size: 16px;
+}
+.options-dropdown{
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    background-color: #fff;
+    border: 2px solid #6C63FF;
+    border-radius: 5px;
+    display: none;
+    z-index: 1;
+} 
+.options-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+}
+.options-dropdown div:hover{
+    background-color: #6C63FF;
+    color: #fff;
+}
+#options:hover .options-dropdown{
+    display: flex;
+    flex-direction: column;
+}
+.delete{
+    display: flex;
+}
+.update{
+    display: flex;
+    border-bottom: 2px solid #6C63FF;
+}
+.delete:hover{
+    border-bottom: 1px solid #6C63FF;
+}

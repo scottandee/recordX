@@ -15,6 +15,17 @@ function loadFilters (faculties) {
     searchFilter.append(option);
   }
 }
+// This fuction sends a delete request for the specified
+// id and resource name
+function doDelete (id, resourceName) {
+  $.ajax({
+    type: 'DELETE',
+    url: 'http://0.0.0.0:5000/api/v1/' + resourceName + '/' + id,
+    success: () => {
+      alert('deleted');
+    }
+  });
+}
 
 // This function loads up the departments that are part
 // of the data parameter that is passed into the function
@@ -39,9 +50,24 @@ function loadDepartments (depts) {
     resData.append($('<h4>').text('HOD:'));
     resData.append($('<p>').text(depts[i].hod));
 
+    const resOptions = $('<div>').attr('id', 'options');
+    const optionsDropdown = $('<div>').addClass('options-dropdown');
+    optionsDropdown.attr('data-student-id', depts[i].id);
+
+    const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
+
+    const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
+    deleteOption.click(() => {
+      if (confirm('Are you sure you want to delete this?')) {
+        doDelete(depts[i].id, 'departments');
+      }
+    });
+    optionsDropdown.append(updateOption, deleteOption);
+    resOptions.append($('<i>').addClass('fas fa-ellipsis-v options-icon'));
+    resOptions.append(optionsDropdown);
+
     content.append(resData);
-    card.append(content);
-    card.append($('<i>').addClass('fas fa-ellipsis-v'));
+    card.append(content, resOptions);
 
     departments.append(card);
   }
