@@ -8,6 +8,7 @@ from datetime import datetime
 
 from app.api.v1.views import api_v1
 from app.utils.dict_cleanup import dict_cleanup
+from app.utils.enrollments import link_course_to_student
 from app.models import db
 from app.models.student import Student
 from app.models.department import Department
@@ -64,7 +65,21 @@ def create_student(id):
         abort(404)
 
     data["dob"] = datetime.strptime(data["dob"], '%Y-%m-%d')
-    # create a new student with specified values
+
+    # Filter out all specified enrollments
+    enrollments = {}
+    for key, value in data.items():
+        try:
+            k = int(key)
+            enrollments[key] = value
+        except ValueError:
+            continue
+
+    # cleanse the data dict of all enrollmens
+    for key in enrollments.keys():
+        del data[key]
+
+    # create a new student with specified data
     student = Student(**data)
     dict_repr = dict_cleanup(student)
 
@@ -74,6 +89,13 @@ def create_student(id):
     db.session.add(student)
     db.session.add(dept)
     db.session.commit()
+
+    # add all course enrollments to the student
+    student = Student.query.filter_by(email=dict_repr["email"]).first()
+    for key, value in enrollments.items():
+        e = link_course_to_student(student.id, int(key), value)
+        if e == -1:
+            abort(400, "error in grades")
 
     return dict_repr, 201
 
