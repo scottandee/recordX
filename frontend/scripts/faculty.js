@@ -11,11 +11,51 @@ function doDelete (id, resourceName) {
     }
   });
 }
+
+function doUpdate (fac) {
+  // retreive and open the edit faculty modal
+  const modal = $('[data-update-modal]');
+  modal[0].showModal();
+
+  // Fill the form with the existing values
+  $('#put-name').val(fac.name);
+  $('#put-description').val(fac.description);
+
+  // retreive the edit form element
+  const updateFormEl = $('#update-fac-form');
+
+  // add event listener to handle PUT action
+  updateFormEl.on('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(updateFormEl[0]);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    $.ajax({
+      type: 'PUT',
+      url: 'http://0.0.0.0:5000/api/v1/faculties/' + fac.id,
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: (data) => {
+        console.log(data);
+        updateFormEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
+      }
+    });
+  });
+}
+
 // This function loads up the faculties that are part
 // of the facs parameter that is passed into the function
 // onto the app
 function loadFaculties (facs) {
+  // reterive the container element that will contain all faculties
   const faculties = $('section.resources');
+
+  // loop through all the facs
   for (let i = 0; i < Object.keys(facs).length; i++) {
     const card = $('<div>').addClass('card');
     const img = $('<img>');
@@ -36,6 +76,9 @@ function loadFaculties (facs) {
     optionsDropdown.attr('data-student-id', facs[i].id);
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
+    updateOption.click(() => {
+      doUpdate(facs[i]);
+    });
 
     const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
     deleteOption.click(() => {
@@ -82,12 +125,16 @@ $(document).ready(() => {
     $.ajax({
       type: 'POST',
       url: 'http://0.0.0.0:5000/api/v1/faculties',
-      datatype: 'json',
+      dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (data) => {
         console.log(data);
         formEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
       }
     });
   });

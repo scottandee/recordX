@@ -44,8 +44,14 @@ def create_faculty():
         abort(400, "Not a JSON")
     if "name" not in request.json.keys():
         abort(400, "Missing name")
+        return {"error": "Missing Name"}, 400
 
-    faculty = Faculty(**request.json)
+    data = request.json
+    names = [f.name for f in Faculty.query.all()]
+    if data["name"] in names:
+        return {"error": "Faculty name already exists"}, 400
+
+    faculty = Faculty(**data)
     dict_repr = dict_cleanup(faculty)
     db.session.add(faculty)
     db.session.commit()
@@ -77,8 +83,11 @@ def update_faculty(id):
     if faculty is None:
         abort(404)
 
-    request_data = request.json
-    for key, value in request_data.items():
+    data = request.json
+    names = [f.name for f in Faculty.query.all()]
+    if data["name"] in names:
+        return {"error": "Faculty name already exists"}, 400
+    for key, value in data.items():
         setattr(faculty, key, value)
     dict_repr = dict_cleanup(faculty)
     db.session.add(faculty)

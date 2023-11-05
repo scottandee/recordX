@@ -26,6 +26,50 @@ function doDelete (id, resourceName) {
     }
   });
 }
+function doUpdate (course) {
+  // retreive and open the edit faculty modal
+  const modal = $('[data-update-modal]');
+  modal[0].showModal();
+
+  // Fill the form with the existing values
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/departments/' + course.department_id,
+    success: (dept) => {
+      $('.dept-name').text(dept.name);
+    }
+  });
+  $('#put-instructor').val(course.instructor);
+  $('#put-description').val(course.description);
+  $('.course-title').text(course.title);
+  $('.course-code').text(course.code);
+
+  // retreive the edit form element
+  const updateFormEl = $('#update-course-form');
+
+  // add event listener to handle PUT action
+  updateFormEl.on('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(updateFormEl[0]);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    $.ajax({
+      type: 'PUT',
+      url: 'http://0.0.0.0:5000/api/v1/courses/' + course.id,
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: (data) => {
+        console.log(data);
+        updateFormEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
+      }
+    });
+  });
+}
 // This function loads up the courses that are part
 // of the course parameter that is passed into the function
 // onto the app
@@ -54,6 +98,9 @@ function loadCourses (courses) {
     optionsDropdown.attr('data-student-id', courses[i].id);
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
+    updateOption.click(() => {
+      doUpdate(courses[i]);
+    });
     const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
     deleteOption.click(() => {
       if (confirm('Are you sure you want to delete this?')) {
@@ -104,6 +151,10 @@ $(document).ready(() => {
       data: JSON.stringify(data),
       success: (data) => {
         formEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
       }
     });
   });

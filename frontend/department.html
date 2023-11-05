@@ -51,13 +51,13 @@
                 </select>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <button class="create-new" data-open-modal>
+            <button class="create-new" data-open-create-modal>
                 <i class="fas fa-plus"></i><p>Create Department<p>
             </button>
 
-            <dialog class="popup-form" data-modal>
+            <dialog class="popup-form" data-create-modal>
                 <div class="create-new-banner">
-                    <i class="fas fa-times" data-close-modal></i>
+                    <i class="fas fa-times" data-close-create-modal></i>
                 </div>
 
                 <form class="create-new-form" id="dept-form">
@@ -69,18 +69,46 @@
                         </select>
                     </div>
                     <div class="input-fields">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="post-name">Name</label>
+                        <input type="text" id="post-name" name="name" required>
                     </div>
                     <div class="input-fields">
-                        <label for="description">Description</label>
-                        <input type="text" id="description" name="description" required>
+                        <label for="post-description">Description</label>
+                        <input type="text" id="post-description" name="description" required>
                     </div>
                     <div class="input-fields">
-                        <label for="hod">Head of Department</label>
-                        <input type="text" id="hod" name="hod" required>
+                        <label for="post-hod">Head of Department</label>
+                        <input type="text" id="post-hod" name="hod" required>
                     </div>
                     <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
+                </form>
+
+            </dialog>
+            <dialog class="popup-form" data-update-modal>
+                <div class="create-new-banner">
+                    <i class="fas fa-times" data-close-update-modal></i>
+                </div>
+
+                <form class="create-new-form" id="update-dept-form">
+                    <h3>Edit Department</h3>
+
+                    <div class="input-fields">
+                        <label for="fac-name">Faculty</label>
+                        <h4 class="fac-name"></h4>
+                    </div>
+                    <div class="input-fields">
+                        <label for="put-name">Name</label>
+                        <input type="text" id="put-name" name="name" required>
+                    </div>
+                    <div class="input-fields">
+                        <label for="put-description">Description</label>
+                        <input type="text" id="put-description" name="description" required>
+                    </div>
+                    <div class="input-fields">
+                        <label for="put-hod">Head of Department</label>
+                        <h4 class="dept-hod"></h4>
+                    </div>
+                    <div class="popup-form-button-sect"><button type="submit" class="create">Update</button></div>
                 </form>
 
             </dialog>

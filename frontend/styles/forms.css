@@ -48,7 +48,7 @@ label{
 .input-fields input,
 select#res-filter,
 .added-course, #grade,
-#courses {
+#courses, #put-courses {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #6C63FF;
@@ -56,7 +56,7 @@ select#res-filter,
 .input-fields input:focus,
 select#res-filter:focus,
 .added-course:focus, #grade:focus
-#courses:focus{
+#courses:focus, #put-courses:focus{
     outline: 2px solid #6C63FF;
     border: 0;
 }
@@ -74,7 +74,8 @@ select#res-filter:focus,
     text-align: right;
     padding: 20px 0px;
 }
-select#res-filter, #grade, #courses{
+select#res-filter, #grade, #courses,
+#put-courses {
     background: white;
 }
 .added-course{

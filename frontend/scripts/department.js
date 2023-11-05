@@ -26,7 +26,49 @@ function doDelete (id, resourceName) {
     }
   });
 }
+function doUpdate (dept) {
+  // retreive and open the edit faculty modal
+  const modal = $('[data-update-modal]');
+  modal[0].showModal();
 
+  // Fill the form with the existing values
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/faculties/' + dept.faculty_id,
+    success: (fac) => {
+      $('.fac-name').text(fac.name);
+    }
+  });
+  $('#put-name').val(dept.name);
+  $('#put-description').val(dept.description);
+  $('.dept-hod').text(dept.hod);
+
+  // retreive the edit form element
+  const updateFormEl = $('#update-dept-form');
+
+  // add event listener to handle PUT action
+  updateFormEl.on('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(updateFormEl[0]);
+    const data = Object.fromEntries(formData);
+    console.log(data);
+    $.ajax({
+      type: 'PUT',
+      url: 'http://0.0.0.0:5000/api/v1/departments/' + dept.id,
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: (data) => {
+        console.log(data);
+        updateFormEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
+      }
+    });
+  });
+}
 // This function loads up the departments that are part
 // of the data parameter that is passed into the function
 // onto the app
@@ -57,6 +99,9 @@ function loadDepartments (depts) {
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
 
     const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
+    updateOption.click(() => {
+      doUpdate(depts[i]);
+    });
     deleteOption.click(() => {
       if (confirm('Are you sure you want to delete this?')) {
         doDelete(depts[i].id, 'departments');
@@ -123,6 +168,10 @@ $(document).ready(() => {
       data: JSON.stringify(data),
       success: (data) => {
         formEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
       }
     });
   });

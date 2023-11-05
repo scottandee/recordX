@@ -46,6 +46,82 @@ function doDelete (id, resourceName) {
     }
   });
 }
+
+function doUpdate (student) {
+  // retreive and open the edit faculty modal
+  const modal = $('[data-update-modal]');
+  modal[0].showModal();
+
+  // Fill the form with the existing values
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/departments/' + student.department_id,
+    success: (dept) => {
+      $('.dept-name').text(dept.name);
+    }
+  });
+  $('#put-first').val(student.first_name);
+  $('#put-last').val(student.last_name);
+  $('#put-email').text(student.email);
+  $('#put-matric').text(student.matric_number);
+  $('#put-addr').val(student.address);
+  $('#put-dob').val(student.dob);
+  $('#put-gender').text(student.gender);
+
+  // load up courses in the department that is to be edited
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/departments/' + student.department_id + '/courses',
+    success: (courses) => {
+      loadCourseFilters(courses, 'SELECT#put-courses', 'Course');
+    }
+  });
+
+  // retreive courses selected by student and fill them into the edit form
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1//students/' + student.id + '/courses',
+    success: (stuCourses) => {
+      console.log(stuCourses);
+      // $('#selected-courses-update').empty();
+      for (let i = 0; i < stuCourses.length; i++) {
+        $('#put-courses option:contains(' + stuCourses[i].course.title + ')').attr('selected', 'selected');
+        $('#edit').click();
+        $('li.put-course' + (stuCourses[i].course.id) + ' select option:contains(' + stuCourses[i].grade + ')').attr('selected', 'selected');
+      }
+    }
+  });
+
+  // retreive the edit form element
+  const updateFormEl = $('#update-student-form');
+
+  // add event listener to handle PUT action
+  updateFormEl.on('submit', function (event) {
+    event.preventDefault();
+    const formData = new FormData(updateFormEl[0]);
+    formData.delete('department_id');
+    formData.delete('courses');
+    const data = Object.fromEntries(formData);
+
+    console.log(data);
+    $.ajax({
+      type: 'PUT',
+      url: 'http://0.0.0.0:5000/api/v1/students/' + student.id,
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
+      success: (data) => {
+        console.log(data);
+        updateFormEl[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
+      }
+    });
+  });
+}
+
 function loadStudents (studs) {
   const students = $('section.resources');
   for (let i = 0; i < Object.keys(studs).length; i++) {
@@ -71,6 +147,9 @@ function loadStudents (studs) {
     optionsDropdown.attr('data-student-id', studs[i].id);
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
+    updateOption.click(() => {
+      doUpdate(studs[i]);
+    });
 
     const deleteOption = $('<div>').addClass('delete').html('<p>Delete</p>');
     deleteOption.click(() => {
@@ -90,12 +169,6 @@ function loadStudents (studs) {
     students.append(card);
   }
 }
-
-$(document).ready(() => {
-  $('#delete-yes').click(() => {
-    const studentId = $('#delete-yes').parent().attr('data-student-id');
-  });
-});
 
 // This function dynamically creates a grade dropdown
 function createGradeDropDown (courseId) {
@@ -145,7 +218,7 @@ $(document).ready(() => {
 });
 
 // This section of code handles the addition/enrollment of courses.
-// Simoilar to a to-do-list once a course is added, it'll be displayed
+// Similar to a to-do-list once a course is added, it'll be displayed
 // in the list of added courses
 $(document).ready(() => {
   const addCourseButton = $('button.add-course');
@@ -189,7 +262,40 @@ $(document).ready(() => {
     }
   });
 });
+$(document).ready(() => {
+  const addCourseButton = $('#edit');
+  const selected = $('#selected-courses-update');
+  let added = [];
 
+  addCourseButton.click((event) => {
+    event.preventDefault();
+    const select = $('#put-courses option:selected');
+
+    if (!added.includes(select.attr('value'))) {
+      if (select.attr('value') !== 'select') {
+        const courseId = select.attr('value');
+        const course = $('<li>').addClass('added-course put-course' + courseId);
+        course.append(($('<i>').addClass('fas fa-times')));
+        course.append($('<p>').text(select.text()));
+        course.append(createGradeDropDown(courseId));
+        selected.append(course);
+        added.push(courseId);
+
+        const removeCourseIcon = $('li.put-course' + courseId + ' i');
+        removeCourseIcon.on('click', () => {
+          const idx = added.indexOf(courseId);
+          added.splice([idx], 1);
+
+          $('li.put-course' + courseId).remove();
+        });
+      }
+    }
+  });
+  const close = $('[data-close-update-modal]');
+  close.on('click', () => {
+    added = [];
+  });
+});
 // This section of code loads up departments for the `create new` form
 $(document).ready(() => {
   $.ajax({
@@ -239,6 +345,10 @@ $(document).ready(() => {
       data: JSON.stringify(data),
       success: (data) => {
         studentForm[0].reset();
+      },
+      error: (error) => {
+        const errorMessage = error.responseJSON.error;
+        alert(errorMessage);
       }
     });
   });

@@ -26,6 +26,17 @@ def get_all_departments():
     return dept_list
 
 
+@api_v1.route("departments/<int:id>", methods=["GET"], strict_slashes=False)
+def get_one_dept(id):
+    """This returns the department with
+    specified id"""
+    dept = Department.query.filter_by(id=id).first()
+    if dept is None:
+        abort(404)
+    dict_repr = dict_cleanup(dept)
+    return dict_repr
+
+
 @api_v1.route(
     "/faculties/<int:id>/departments", methods=["GET"], strict_slashes=False
 )
@@ -56,18 +67,18 @@ def create_dept(id):
     if not request.is_json:
         abort(400, "Not a JSON")
     if "name" not in request.json.keys():
-        abort(400, "Missing name")
+        return {"error": "Missing Name"}, 400
     if "hod" not in request.json.keys():
-        abort(400, "Missing hod")
+        return {"error": "Missing HOD"}, 400
     if "description" not in request.json.keys():
-        abort(400, "Missing description")
+        return {"error": "Missing Description"}, 400
     data = request.json
     hods = [d.hod for d in Department.query.all()]
     names = [d.name for d in Department.query.all()]
     if data["hod"] in hods:
-        abort(400, "Hod already exists")
+        return {"error": "HOD to another department"}, 400
     if data["name"] in names:
-        abort(400, "name already exists")
+        return {"error": "This department already exists"}, 400
 
     # retrive faculty id specified from db
     fac = Faculty.query.filter_by(id=id).first()
@@ -99,11 +110,11 @@ def update_dept(id):
     if "hod" in data.keys():
         hods = [d.hod for d in Department.query.all()]
         if data["hod"] in hods:
-            abort(400, "Hod already exists")
+            return {"error": "HOD to another department"}, 400
     if "name" in data.keys():
         names = [d.name for d in Department.query.all()]
         if data["name"] in names:
-            abort(400, "name already exists")
+            return {"error": "This department already exists"}, 400
 
     # retrieve dept to be updated from db
     dept = Department.query.filter_by(id=id).first()
