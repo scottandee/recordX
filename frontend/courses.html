@@ -57,14 +57,14 @@
             </form>
 
 
-            <button class="create-new" data-open-modal>
+            <button class="create-new" data-open-create-modal>
                 <i class="fas fa-plus"></i><p>Create Course<p>
             </button>
 
 
-            <dialog class="popup-form" data-modal>
+            <dialog class="popup-form" data-create-modal>
                 <div class="create-new-banner">
-                    <i class="fas fa-times" data-close-modal></i>
+                    <i class="fas fa-times" data-close-create-modal></i>
                 </div>
                 <form class="create-new-form" id="course-form">
                     <h3>Create Course</h3>
@@ -75,26 +75,57 @@
                         </select>
                     </div>
                     <div class="input-fields">
-                        <label for="title">Course Title</label>
-                        <input type="text" id="title" name="title" required>
+                        <label for="post-title">Course Title</label>
+                        <input type="text" id="post-title" name="title" required>
                     </div>
                     <div class="input-fields">
-                        <label for="description">Description</label>
-                        <input type="text" id="description" name="description" required>
+                        <label for="post-description">Description</label>
+                        <input type="text" id="post-description" name="description" required>
                     </div>
                     <div class="input-fields">
-                        <label for="instructor">Instructor</label>
-                        <input type="text" id="instructor" name="instructor" required>
+                        <label for="post-instructor">Instructor</label>
+                        <input type="text" id="post-instructor" name="instructor" required>
                     </div>
                     <div class="input-fields">
-                        <label for="code">Course Code</label>
-                        <input type="text" id="code" name="code" required>
+                        <label for="post-code">Course Code</label>
+                        <input type="text" id="post-code" name="code" required>
                     </div>
                     <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
                 </form>
-
-
         </dialog>
+
+        <dialog class="popup-form" data-update-modal>
+            <div class="create-new-banner">
+                <i class="fas fa-times" data-close-update-modal></i>
+            </div>
+            <form class="create-new-form" id="update-course-form">
+                <h3>Edit Course</h3>
+
+                <div class="input-fields">
+                    <label for="dept-name">Department</label>
+                    <h4 class="dept-name"></h4>
+                </div>
+                <div class="input-fields">
+                    <label for="put-title">Course Title</label>
+                    <h4 class="course-title"></h4>
+                </div>
+                <div class="input-fields">
+                    <label for="put-description">Description</label>
+                    <input type="text" id="put-description" name="description" required>
+                </div>
+                <div class="input-fields">
+                    <label for="put-instructor">Instructor</label>
+                    <input type="text" id="put-instructor" name="instructor" required>
+                </div>
+                <div class="input-fields">
+                    <label for="put-code">Course Code</label>
+                    <h4 class="course-code"></h4>
+                </div>
+                <div class="popup-form-button-sect"><button type="submit" class="create">Update</button></div>
+            </form>
+    </dialog>
+
+
         </section>
 
 

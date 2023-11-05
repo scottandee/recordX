@@ -49,24 +49,41 @@
                 <input type="text" name="pattern" placeholder="Search...">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <button class="create-new" data-open-modal>
+            <button class="create-new" data-open-create-modal>
                 <i class="fas fa-plus"></i><p>Create Faculty<p>
             </button>
-            <dialog class="popup-form" data-modal>
+            <dialog class="popup-form" data-create-modal>
                 <div class="create-new-banner">
-                    <i class="fas fa-times" data-close-modal></i>
+                    <i class="fas fa-times" data-close-create-modal></i>
                 </div>
                 <form class="create-new-form" id="fac-form">
                     <h3>Create Faculty</h3>
                     <div class="input-fields">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="post-name">Name</label>
+                        <input type="text" id="post-name" name="name" required>
                    </div>
                     <div class="input-fields">
-                        <label for="description">Description</label>
-                        <input type="text" id="description" name="description" required>
+                        <label for="post-description">Description</label>
+                        <input type="text" id="post-description" name="description" required>
                     </div>
                     <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
+                </form>
+            </dialog>
+            <dialog class="popup-form" data-update-modal>
+                <div class="create-new-banner">
+                    <i class="fas fa-times" data-close-update-modal></i>
+                </div>
+                <form class="create-new-form" id="update-fac-form">
+                    <h3>Edit Faculty</h3>
+                    <div class="input-fields">
+                        <label for="put-name">Name</label>
+                        <input type="text" id="put-name" name="name" required>
+                   </div>
+                    <div class="input-fields">
+                        <label for="put-description">Description</label>
+                        <input type="text" id="put-description" name="description" required>
+                    </div>
+                    <div class="popup-form-button-sect"><button type="submit" class="create">Update</button></div>
                 </form>
             </dialog>
         </section>
@@ -86,8 +103,8 @@
 
     <footer>
         <div class="socials">
-            <i class="fa fa-github github"><a href="#"></a></i>
-            <i class="fa fa-linkedin linkedin"><a href="#"></a></i>
+            <i class="fa fa-github github"><a href="https://github.com/scottandee"></a></i>
+            <i class="fa fa-linkedin linkedin"><a href=""></a></i>
         </div>
         <p class="rights">&copy; Copyright, Olayinkascott Andee</p>
     </footer>
