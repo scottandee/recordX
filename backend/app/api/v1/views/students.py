@@ -118,6 +118,21 @@ def update_student(id):
         if data["email"] in emails:
             abort(400, "email already exists")
 
+    data["dob"] = datetime.strptime(data["dob"], '%Y-%m-%d')
+
+    # Filter out all specified enrollments
+    enrollments = {}
+    for key, value in data.items():
+        try:
+            k = int(key)
+            enrollments[key] = value
+        except ValueError:
+            continue
+
+    # cleanse the data dict of all enrollmens
+    for key in enrollments.keys():
+        del data[key]
+
     # retrieve student to be updated from db
     student = Student.query.filter_by(id=id).first()
     if student is None:
@@ -126,6 +141,11 @@ def update_student(id):
     # update the student with values specified
     for key, value in data.items():
         setattr(student, key, value)
+
+    for key, value in enrollments.items():
+        e = link_course_to_student(student.id, int(key), value)
+        if e == -1:
+            abort(400, "error in grades")
 
     dict_repr = dict_cleanup(student)
     db.session.add(student)
@@ -184,6 +204,7 @@ def students_search():
 
     for s in students:
         dict_repr = dict_cleanup(s)
+        dict_repr["dob"] = dict_repr["dob"].strftime('%Y-%m-%d')
         student_list.append(dict_repr)
 
     # check if there's a search pattern defined
