@@ -19,3 +19,13 @@ $(function () {
     modal[0].close();
   });
 });
+
+$(function () {
+  const close = $('[data-close-details]');
+  const modal = $('[data-details]');
+
+  close.on('click', () => {
+    $('#selected-courses-dialog').empty();
+    modal[0].close();
+  });
+});

@@ -69,6 +69,21 @@ function doUpdate (dept) {
     });
   });
 }
+
+function showDeptDetails (dept) {
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/faculties/' + dept.faculty_id,
+    success: (fac) => {
+      $('.fac-name').text(fac.name);
+    }
+  });
+  $('.dept-name').text(dept.name);
+  $('.dept-description').text(dept.description);
+  $('.dept-hod').text(dept.hod);
+  $('[data-details]')[0].showModal();
+}
+
 // This function loads up the departments that are part
 // of the data parameter that is passed into the function
 // onto the app
@@ -76,21 +91,27 @@ function loadDepartments (depts) {
   const departments = $('section.resources');
   for (let i = 0; i < Object.keys(depts).length; i++) {
     const card = $('<div>').addClass('card dept-card');
-    const img = $('<img>');
-    img.attr('src', 'images/faculty.png');
-    card.append(img);
+    const banner = $('<div>').addClass('card-banner-faculty');
+    card.append(banner);
+    banner.click(() => {
+      showDeptDetails(depts[i]);
+    });
+    card.append(banner);
 
     const content = $('<div>').addClass('card-content');
     const resData = $('<div>').addClass('resource-data');
+    content.click(() => {
+      showDeptDetails(depts[i]);
+    });
 
-    resData.append($('<h4>').text('Name:'));
-    resData.append($('<p>').text(depts[i].name));
+    // resData.append($('<h4>').text('Name:'));
+    resData.append($('<h4>').text(depts[i].name));
 
-    resData.append($('<h4>').text('Description:'));
-    resData.append($('<p>').text(depts[i].description));
+    // resData.append($('<h4>').text('Description:'));
+    // resData.append($('<p>').text(depts[i].description));
 
-    resData.append($('<h4>').text('HOD:'));
-    resData.append($('<p>').text(depts[i].hod));
+    // resData.append($('<h4>').text('HOD:'));
+    // resData.append($('<p>').text(depts[i].hod));
 
     const resOptions = $('<div>').attr('id', 'options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');

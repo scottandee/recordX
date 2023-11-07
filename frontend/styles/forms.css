@@ -4,17 +4,11 @@
     border-radius: 10px;
     width: 450px;
 }
-#confirm-delete{
+.details-dialog{
     margin: auto;
     border: 1px solid #6C63FF;
     border-radius: 10px;
-    width: 375px;
-}
-#confirm-delete h4{
-    margin-top: 15px;
-}
-.confirm-delete-buttons{
-    padding: 20px;
+    width: 425px;
 }
 .create-new-banner{
     width: 100%;
@@ -24,7 +18,8 @@
 .create-new-form, #enrollments{
     padding: 20px 30px;
 }
-.create-new-form h3{
+.create-new-form h3,
+.details-data h3{
     color: #6C63FF;
     margin-bottom: 16px;
 }
@@ -36,14 +31,21 @@
     padding-right: 15px;
     cursor: pointer;
 }
+input, select {
+    font-size: 15px;
+}
 .input-fields{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
+.input-fields p{
+    font-size: 15px;
+}
 label{
     margin-bottom: 5px;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: 600;
 }
 .input-fields input,
 select#res-filter,
@@ -111,6 +113,16 @@ input#gender {
 }
 .gender-label{
     margin-right: 10px;
+}
+.details-data{
+    padding: 20px 30px;
+}
+.enroll {
+    display: flex;
+    justify-content: space-between;
+}
+.cour-name{
+    margin-right: 20px;
 }
 @media (max-width: 590px){
     label{
