@@ -87,16 +87,30 @@
                 </form>
             </dialog>
         </section>
-        <section class="resources">
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Faculty of Engineering</p>
-                        <h4>Description:</h4><p>The home of technology</p>
+        <section class="details">
+            <dialog class="details-dialog" data-details>
+                <div class="create-new-banner">
+                    <i class="fas fa-times" data-close-details></i>
+                </div>
+                <div class="details-data">
+                    <h3>Faculty Details</h3>
+                    <div class="input-fields">
+                        <label for="fac-name">Faculty</label>
+                        <p class="fac-name"></p>
+                    </div>
+                    <div class="input-fields">
+                        <label for="fac-description">Description</label>
+                        <p class="fac-description"></p>
                     </div>
                 </div>
-                <i class="fas fa-ellipsis-v"></i>
+            </dialog>
+        </section>
+        <section class="resources">
+            <div class="card">
+                <div class="ellipsis"><i class="fas fa-ellipsis-v"></i></div>
+                <div class="resource-name">
+                    <h2>Faculty of Engineering</h2>
+                </div>                
             </div>
         </section>
     </section>

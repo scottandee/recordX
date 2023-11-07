@@ -70,6 +70,21 @@ function doUpdate (course) {
     });
   });
 }
+
+function showCourseDetails (course) {
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/departments/' + course.department_id,
+    success: (dept) => {
+      $('.dept-name').text(dept.name);
+    }
+  });
+  $('.course-title').text(course.title);
+  $('.course-code').text(course.code);
+  $('.course-description').text(course.description);
+  $('.course-instructor').text(course.instructor);
+  $('[data-details]')[0].showModal();
+}
 // This function loads up the courses that are part
 // of the course parameter that is passed into the function
 // onto the app
@@ -77,21 +92,26 @@ function loadCourses (courses) {
   const coursesDisplay = $('section.resources');
   for (let i = 0; i < Object.keys(courses).length; i++) {
     const card = $('<div>').addClass('card dept-card');
-    const img = $('<img>');
-    img.attr('src', 'images/faculty.png');
-    card.append(img);
+    const banner = $('<div>').addClass('card-banner-faculty');
+    card.append(banner);
+    banner.click(() => {
+      showCourseDetails(courses[i]);
+    });
+    card.append(banner);
 
     const content = $('<div>').addClass('card-content');
     const resData = $('<div>').addClass('resource-data');
+    content.click(() => {
+      showCourseDetails(courses[i]);
+    });
 
-    resData.append($('<h4>').text('Title:'));
-    resData.append($('<p>').text(courses[i].title));
+    resData.append($('<h4>').text(courses[i].code));
+    resData.append($('<h4>').text(courses[i].title));
 
-    resData.append($('<h4>').text('Description:'));
-    resData.append($('<p>').text(courses[i].description));
+    // resData.append($('<h4>').text('Description:'));
 
-    resData.append($('<h4>').text('Instructor:'));
-    resData.append($('<p>').text(courses[i].instructor));
+    // resData.append($('<h4>').text('Instructor:'));
+    // resData.append($('<p>').text(courses[i].instructor));
 
     const resOptions = $('<div>').attr('id', 'options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');

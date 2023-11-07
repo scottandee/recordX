@@ -48,6 +48,11 @@ function doUpdate (fac) {
   });
 }
 
+function showFacultyDetails (faculty) {
+  $('.fac-name').text(faculty.name);
+  $('.fac-description').text(faculty.description);
+  $('[data-details]')[0].showModal();
+}
 // This function loads up the faculties that are part
 // of the facs parameter that is passed into the function
 // onto the app
@@ -58,18 +63,20 @@ function loadFaculties (facs) {
   // loop through all the facs
   for (let i = 0; i < Object.keys(facs).length; i++) {
     const card = $('<div>').addClass('card');
-    const img = $('<img>');
-    img.attr('src', 'images/faculty.png');
-    card.append(img);
+    const banner = $('<div>').addClass('card-banner-faculty');
+    card.append(banner);
 
     const content = $('<div>').addClass('card-content');
     const resData = $('<div>').addClass('resource-data');
+    content.click(() => {
+      showFacultyDetails(facs[i]);
+    });
 
-    resData.append($('<h4>').text('Name:'));
-    resData.append($('<p>').text(facs[i].name));
+    // resData.append($('<h4>').text('Name:'));
+    resData.append($('<h4>').text(facs[i].name));
 
-    resData.append($('<h4>').text('Description:'));
-    resData.append($('<p>').text(facs[i].description));
+    // resData.append($('<h4>').text('Description:'));
+    // resData.append($('<p>').text(facs[i].description));
 
     const resOptions = $('<div>').attr('id', 'options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');

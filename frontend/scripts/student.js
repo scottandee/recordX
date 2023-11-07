@@ -122,16 +122,55 @@ function doUpdate (student) {
   });
 }
 
+function showStudentDetails (student) {
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1/departments/' + student.department_id,
+    success: (dept) => {
+      $('.stu-dept-name').text(dept.name);
+    }
+  });
+  $('.stu-first').text(student.first_name);
+  $('.stu-last').text(student.last_name);
+  $('.stu-email').text(student.email);
+  $('.stu-matric').text(student.matric_number);
+  $('.stu-addr').text(student.address);
+  $('.stu-dob').text(student.dob);
+  $('.stu-gender').text(student.gender);
+  $.ajax({
+    type: 'GET',
+    url: 'http://0.0.0.0:5000/api/v1//students/' + student.id + '/courses',
+    success: (stuCourses) => {
+      $('#selected-courses-dialog').empty();
+      if (stuCourses.length === 0) {
+        $('#selected-courses-dialog').html('<li><p>None</p></li>');
+      }
+      for (let i = 0; i < stuCourses.length; i++) {
+        const li = $('<li>').addClass('enroll');
+        li.html('<p class="cour-name">' + stuCourses[i].course.code + ': ' + stuCourses[i].course.title + '</p>' + '<p>' + stuCourses[i].grade + '</p>');
+        $('#selected-courses-dialog').append(li);
+      }
+    }
+  });
+  $('[data-details]')[0].showModal();
+}
 function loadStudents (studs) {
   const students = $('section.resources');
   for (let i = 0; i < Object.keys(studs).length; i++) {
     const card = $('<div>').addClass('card');
     const img = $('<img>');
     img.attr('src', 'images/faculty.png');
-    card.append(img);
+    img.click(() => {
+      showStudentDetails(studs[i]);
+    });
 
+    card.append(img);
     const content = $('<div>').addClass('card-content');
-    const resData = $('<div>').addClass('resource-data');
+    const resData = $('<div>').addClass('student-data');
+
+    content.click(() => {
+      showStudentDetails(studs[i]);
+    });
 
     resData.append($('<h4>').text('First Name:'));
     resData.append($('<p>').text(studs[i].first_name));
