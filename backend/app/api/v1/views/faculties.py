@@ -84,9 +84,10 @@ def update_faculty(id):
         abort(404)
 
     data = request.json
-    names = [f.name for f in Faculty.query.all()]
-    if data["name"] in names:
-        return {"error": "Faculty name already exists"}, 400
+    if data["name"] != Faculty.query.filter_by(id=id).first().name:
+        names = [f.name for f in Faculty.query.all()]
+        if data["name"] in names:
+            return {"error": "Faculty name already exists"}, 400
     for key, value in data.items():
         setattr(faculty, key, value)
     dict_repr = dict_cleanup(faculty)
