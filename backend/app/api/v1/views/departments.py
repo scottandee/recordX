@@ -72,13 +72,16 @@ def create_dept(id):
         return {"error": "Missing HOD"}, 400
     if "description" not in request.json.keys():
         return {"error": "Missing Description"}, 400
+    
     data = request.json
-    hods = [d.hod for d in Department.query.all()]
-    names = [d.name for d in Department.query.all()]
-    if data["hod"] in hods:
-        return {"error": "HOD to another department"}, 400
-    if data["name"] in names:
-        return {"error": "This department already exists"}, 400
+    if data["hod"] != Department.query.filter_by(id=id).first().hod:
+        hods = [d.hod for d in Department.query.all()]
+        if data["hod"] in hods:
+            return {"error": "HOD to another department"}, 400
+    if data["name"] != Department.query.filter_by(id=id).first().name:
+        names = [d.name for d in Department.query.all()]
+        if data["name"] in names:
+            return {"error": "This department already exists"}, 400
 
     # retrive faculty id specified from db
     fac = Faculty.query.filter_by(id=id).first()
