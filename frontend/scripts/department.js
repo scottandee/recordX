@@ -21,9 +21,6 @@ function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
     url: 'http://0.0.0.0:5000/api/v1/' + resourceName + '/' + id,
-    success: () => {
-      alert('deleted');
-    }
   });
 }
 function doUpdate (dept) {
@@ -61,6 +58,7 @@ function doUpdate (dept) {
       success: (data) => {
         console.log(data);
         updateFormEl[0].reset();
+        modal[0].close();
       },
       error: (error) => {
         const errorMessage = error.responseJSON.error;

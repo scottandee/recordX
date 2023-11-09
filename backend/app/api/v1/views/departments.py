@@ -115,9 +115,10 @@ def update_dept(id):
         if data["hod"] in hods:
             return {"error": "HOD to another department"}, 400
     if "name" in data.keys():
-        names = [d.name for d in Department.query.all()]
-        if data["name"] in names:
-            return {"error": "This department already exists"}, 400
+        if data["name"] != Department.query.filter_by(id=id).first().name:
+            names = [d.name for d in Department.query.all()]
+            if data["name"] in names:
+                return {"error": "This department already exists"}, 400
 
     # retrieve dept to be updated from db
     dept = Department.query.filter_by(id=id).first()

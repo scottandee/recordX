@@ -125,4 +125,4 @@ def faculties_search():
                 filtered.append(fac)
         return filtered
     else:
-        abort(400, "Invalid request")
+        return fac_list

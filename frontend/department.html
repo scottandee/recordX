@@ -66,19 +66,20 @@
                     <div class="input-fields">
                         <label for="res-filter">Select a Faculty</label>
                         <select name="faculty_id" id="res-filter" required>
+                            <option value="">Select a Faculty</option>
                         </select>
                     </div>
                     <div class="input-fields">
                         <label for="post-name">Name</label>
-                        <input type="text" id="post-name" name="name" required>
+                        <input type="text" id="post-name" name="name" placeholder="Department of example" required>
                     </div>
                     <div class="input-fields">
                         <label for="post-description">Description</label>
-                        <input type="text" id="post-description" name="description" required>
+                        <input type="text" id="post-description" name="description" placeholder="This is an example description" required>
                     </div>
                     <div class="input-fields">
                         <label for="post-hod">Head of Department</label>
-                        <input type="text" id="post-hod" name="hod" required>
+                        <input type="text" id="post-hod" name="hod" placeholder="Dr Example E." required>
                     </div>
                     <div class="popup-form-button-sect"><button type="submit" class="create">Create</button></div>
                 </form>
@@ -143,24 +144,13 @@
 
 
         <section class="resources">
-            <div class="card">
-                <img src="images/faculty.png" alt="">
-                <div class="card-content">
-                    <div class="resource-data">
-                        <h4>Name:</h4><p>Department of Biology</p>
-                        <h4>Description:</h4><p>Promoting the study of living organisms and ecosystems</p>
-                        <h4>HOD:</h4><p>Dr Emily Smith</p>
-                    </div>
-                </div>
-                <i class="fas fa-ellipsis-v"></i>
-            </div>
         </section>
     </section>
 
     <footer>
         <div class="socials">
-            <i class="fa fa-github github"><a href="#"></a></i>
-            <i class="fa fa-linkedin linkedin"><a href="#"></a></i>
+            <a href="https://github.com/scottandee"><i class="fa fa-github github"></i></a>
+            <a href="https://www.linkedin.com/in/olayinkascott-andee/"><i class="fa fa-linkedin linkedin"></i></a>
         </div>
         <p class="rights">&copy; Copyright, Olayinkascott Andee</p>
     </footer>
