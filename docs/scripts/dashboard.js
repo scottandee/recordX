@@ -3,7 +3,7 @@
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
-    url: 'http://0.0.0.0:5000/api/v1/stats',
+    url: 'https://scottandee.tech/api/v1/stats',
     success: (stats) => {
       // const numFaculty = $('h2#faculties');
       // const numDepts = $('h2#departments');
