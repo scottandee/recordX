@@ -32,7 +32,7 @@ body {
     font-size: 3rem;
 }
 .recordX{
-    color: #6C63FF;
+    color: rgb(108, 99, 255);
 }
 div p{
     font-size: 1.5rem;
@@ -44,7 +44,7 @@ button{
 }
 button.create-new{
     border: 0;
-    background-color: #6C63FF;
+    background-color: rgb(108, 99, 255);
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -61,7 +61,7 @@ button.create-new:hover{
 
 hr {
     border: none;
-    border-top: 10px dotted #6C63FF;
+    border-top: 10px dotted rgb(108, 99, 255);
     display: block;
     width: 100px;
     margin: auto;
@@ -101,7 +101,7 @@ hr {
 .about-image-socials img{
     width: 300px;
     height: 300px;
-    border: 10px solid #6C63FF;
+    border: 10px solid rgb(108, 99, 255);
     border-radius: 50%;
 }
 span.name{
