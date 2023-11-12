@@ -5,7 +5,7 @@
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'https://scottandee.tech/api/v1/' + resourceName + '/' + id
+    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id
   });
 }
 
@@ -29,7 +29,7 @@ function doUpdate (fac) {
     console.log(data);
     $.ajax({
       type: 'PUT',
-      url: 'https://scottandee.tech/api/v1/faculties/' + fac.id,
+      url: 'https://www.scottandee.tech/api/v1/faculties/' + fac.id,
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -108,7 +108,7 @@ function loadFaculties (facs) {
 $(document).ready(() => {
   $.ajax({
     type: 'POST',
-    url: 'https://scottandee.tech/api/v1/faculties_search',
+    url: 'https://www.scottandee.tech/api/v1/faculties_search',
     datatype: 'json',
     contentType: 'application/json',
     data: JSON.stringify({}),
@@ -129,7 +129,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://scottandee.tech/api/v1/faculties',
+      url: 'https://www.scottandee.tech/api/v1/faculties',
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -159,7 +159,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://scottandee.tech/api/v1/faculties_search',
+      url: 'https://www.scottandee.tech/api/v1/faculties_search',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),

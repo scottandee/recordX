@@ -20,7 +20,7 @@ function loadFilters (depts) {
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'http://0.0.0.0:5000/api/v1/' + resourceName + '/' + id,
+    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
   });
 }
 function doUpdate (course) {
@@ -31,7 +31,7 @@ function doUpdate (course) {
   // Fill the form with the existing values
   $.ajax({
     type: 'GET',
-    url: 'http://0.0.0.0:5000/api/v1/departments/' + course.department_id,
+    url: 'https://www.scottandee.tech/api/v1/departments/' + course.department_id,
     success: (dept) => {
       $('.dept-name').text(dept.name);
     }
@@ -52,7 +52,7 @@ function doUpdate (course) {
     console.log(data);
     $.ajax({
       type: 'PUT',
-      url: 'http://0.0.0.0:5000/api/v1/courses/' + course.id,
+      url: 'https://www.scottandee.tech/api/v1/courses/' + course.id,
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -72,7 +72,7 @@ function doUpdate (course) {
 function showCourseDetails (course) {
   $.ajax({
     type: 'GET',
-    url: 'http://0.0.0.0:5000/api/v1/departments/' + course.department_id,
+    url: 'https://www.scottandee.tech/api/v1/departments/' + course.department_id,
     success: (dept) => {
       $('.dept-name').text(dept.name);
     }
@@ -141,7 +141,7 @@ function loadCourses (courses) {
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
-    url: 'http://0.0.0.0:5000/api/v1/departments',
+    url: 'https://www.scottandee.tech/api/v1/departments',
     success: (depts) => {
       loadFilters(depts);
     }
@@ -163,7 +163,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'http://0.0.0.0:5000/api/v1/departments/' + deptId + '/courses',
+      url: 'https://www.scottandee.tech/api/v1/departments/' + deptId + '/courses',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -183,7 +183,7 @@ $(document).ready(() => {
 $(document).ready(() => {
   $.ajax({
     type: 'POST',
-    url: 'http://0.0.0.0:5000/api/v1/courses_search',
+    url: 'https://www.scottandee.tech/api/v1/courses_search',
     datatype: 'json',
     contentType: 'application/json',
     data: JSON.stringify({}),
@@ -207,7 +207,7 @@ $(document).ready(() => {
     const data = Object.fromEntries(formData);
     $.ajax({
       type: 'POST',
-      url: 'http://0.0.0.0:5000/api/v1/courses_search',
+      url: 'https://www.scottandee.tech/api/v1/courses_search',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
