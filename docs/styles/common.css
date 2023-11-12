@@ -125,7 +125,7 @@ div.card:hover{
     transition: .2s;
 }
 .fa-ellipsis-v{
-    width: 5%;
+    width: 100%;
     margin-top: 10px;
     cursor: pointer;
     color: #6C63FF;

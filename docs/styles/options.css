@@ -26,10 +26,6 @@
     background-color: #6C63FF;
     color: #fff;
 }
-#options:hover .options-dropdown{
-    display: flex;
-    flex-direction: column;
-}
 .delete{
     display: flex;
 }
@@ -40,10 +36,13 @@
 .delete:hover{
     border-bottom: 1px solid #6C63FF;
 }
-@media (max-width: 500px) {
+@media (min-width: 500px) {
     #options:hover .options-dropdown{
-        display: none;
-    }
+        display: flex;
+        flex-direction: column;
+    }    
+}
+@media (max-width: 500px) {
     #options:active .options-dropdown{
         display: flex;
         flex-direction: column;
