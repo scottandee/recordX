@@ -5,7 +5,10 @@
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id
+    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
+    success: () => {
+      location.reload();
+    }
   });
 }
 
@@ -36,7 +39,7 @@ function doUpdate (fac) {
       success: (data) => {
         console.log(data);
         updateFormEl[0].reset();
-        modal[0].close();
+        location.reload();
       },
       error: (error) => {
         const errorMessage = error.responseJSON.error;
@@ -136,6 +139,7 @@ $(document).ready(() => {
       success: (data) => {
         console.log(data);
         formEl[0].reset();
+        location.reload();
       },
       error: (error) => {
         const errorMessage = error.responseJSON.error;

@@ -124,7 +124,7 @@ input#gender {
 .cour-name{
     margin-right: 20px;
 }
-@media (max-width: 590px){
+/* @media (max-width: 590px){
     label{
         font-size: 13px;
     }
@@ -148,4 +148,4 @@ input#gender {
         font-size: 12px;
         justify-content: center;
     }
-}
+} */

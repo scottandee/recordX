@@ -21,6 +21,9 @@ function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
     url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
+    success: () => {
+      location.reload();
+    }
   });
 }
 function doUpdate (dept) {
@@ -58,7 +61,7 @@ function doUpdate (dept) {
       success: (data) => {
         console.log(data);
         updateFormEl[0].reset();
-        modal[0].close();
+        location.reload();
       },
       error: (error) => {
         const errorMessage = error.responseJSON.error;
@@ -102,14 +105,7 @@ function loadDepartments (depts) {
       showDeptDetails(depts[i]);
     });
 
-    // resData.append($('<h4>').text('Name:'));
     resData.append($('<h4>').text(depts[i].name));
-
-    // resData.append($('<h4>').text('Description:'));
-    // resData.append($('<p>').text(depts[i].description));
-
-    // resData.append($('<h4>').text('HOD:'));
-    // resData.append($('<p>').text(depts[i].hod));
 
     const resOptions = $('<div>').attr('id', 'options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');
@@ -187,6 +183,7 @@ $(document).ready(() => {
       data: JSON.stringify(data),
       success: (data) => {
         formEl[0].reset();
+        location.reload();
       },
       error: (error) => {
         const errorMessage = error.responseJSON.error;
