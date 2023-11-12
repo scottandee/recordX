@@ -41,6 +41,9 @@
     border-bottom: 1px solid #6C63FF;
 }
 @media (max-width: 500px) {
+    #options:hover .options-dropdown{
+        display: none;
+    }
     #options:active .options-dropdown{
         display: flex;
         flex-direction: column;
