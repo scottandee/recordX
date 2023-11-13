@@ -1,4 +1,4 @@
-#options {
+.options {
     position: relative;
     display: flex;
     height: 30px;
@@ -37,14 +37,12 @@
     border-bottom: 1px solid #6C63FF;
 }
 @media (min-width: 500px) {
-    #options:hover .options-dropdown{
+    .options:hover .options-dropdown{
         display: flex;
         flex-direction: column;
     }    
 }
-@media (max-width: 500px) {
-    #options:active .options-dropdown{
-        display: flex;
-        flex-direction: column;
-    }
+.show{
+    display: flex;
+    flex-direction: column;
 }

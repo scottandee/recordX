@@ -94,10 +94,6 @@ function loadDepartments (depts) {
     const card = $('<div>').addClass('card dept-card');
     const banner = $('<div>').addClass('card-banner-faculty');
     card.append(banner);
-    banner.click(() => {
-      showDeptDetails(depts[i]);
-    });
-    card.append(banner);
 
     const content = $('<div>').addClass('card-content');
     const resData = $('<div>').addClass('resource-data');
@@ -107,9 +103,13 @@ function loadDepartments (depts) {
 
     resData.append($('<h4>').text(depts[i].name));
 
-    const resOptions = $('<div>').attr('id', 'options');
+    const resOptions = $('<div>').attr('id', 'option-' + depts[i].id);
+    resOptions.addClass('options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');
-    optionsDropdown.attr('data-student-id', depts[i].id);
+    optionsDropdown.attr('data-department-id', depts[i].id);
+    resOptions.click(() => {
+      optionsDropdown.addClass("show");
+    });
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
 

@@ -95,10 +95,6 @@ function loadCourses (courses) {
     const card = $('<div>').addClass('card dept-card');
     const banner = $('<div>').addClass('card-banner-faculty');
     card.append(banner);
-    banner.click(() => {
-      showCourseDetails(courses[i]);
-    });
-    card.append(banner);
 
     const content = $('<div>').addClass('card-content');
     const resData = $('<div>').addClass('resource-data');
@@ -109,14 +105,13 @@ function loadCourses (courses) {
     resData.append($('<h4>').text(courses[i].code));
     resData.append($('<h4>').text(courses[i].title));
 
-    // resData.append($('<h4>').text('Description:'));
-
-    // resData.append($('<h4>').text('Instructor:'));
-    // resData.append($('<p>').text(courses[i].instructor));
-
-    const resOptions = $('<div>').attr('id', 'options');
+    const resOptions = $('<div>').attr('id', 'option-' + courses[i].id);
+    resOptions.addClass('options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');
-    optionsDropdown.attr('data-student-id', courses[i].id);
+    optionsDropdown.attr('data-course-id', courses[i].id);
+    resOptions.click(() => {
+      optionsDropdown.addClass("show");
+    });
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
     updateOption.click(() => {

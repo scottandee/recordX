@@ -73,15 +73,15 @@ function loadFaculties (facs) {
       showFacultyDetails(facs[i]);
     });
 
-    // resData.append($('<h4>').text('Name:'));
     resData.append($('<h4>').text(facs[i].name));
 
-    // resData.append($('<h4>').text('Description:'));
-    // resData.append($('<p>').text(facs[i].description));
-
-    const resOptions = $('<div>').attr('id', 'options');
+    const resOptions = $('<div>').addClass('options');
+    resOptions.attr('id', 'option-' + facs[i].id);    
     const optionsDropdown = $('<div>').addClass('options-dropdown');
-    optionsDropdown.attr('data-student-id', facs[i].id);
+    optionsDropdown.attr('data-faculty-id', facs[i].id);
+    resOptions.click(() => {
+      optionsDropdown.addClass("show");
+    })
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
     updateOption.click(() => {
@@ -97,8 +97,6 @@ function loadFaculties (facs) {
     optionsDropdown.append(updateOption, deleteOption);
     resOptions.append($('<i>').addClass('fas fa-ellipsis-v options-icon'));
     resOptions.append(optionsDropdown);
-    // resData.append($('<h4>').text('Dean:'));
-    // resData.append($('<p>').text(depts[i].hod));
 
     content.append(resData);
     card.append(content, resOptions);
