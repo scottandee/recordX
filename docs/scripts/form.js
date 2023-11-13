@@ -29,3 +29,9 @@ $(function () {
     modal[0].close();
   });
 });
+
+$(document).on('click', function(event) {
+  if (!$(event.target).closest('.options').length) {
+    $(".options-dropdown").removeClass('show');
+  }
+});

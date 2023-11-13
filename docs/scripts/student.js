@@ -182,10 +182,13 @@ function loadStudents (studs) {
     resData.append($('<h4>').text('Matric No:'));
     resData.append($('<p>').text(studs[i].matric_number));
 
-    const resOptions = $('<div>').attr('id', 'options');
+    const resOptions = $('<div>').attr('id', 'option-' + studs[i].id);
+    resOptions.addClass('options')
     const optionsDropdown = $('<div>').addClass('options-dropdown');
     optionsDropdown.attr('data-student-id', studs[i].id);
-
+    resOptions.click(() => {
+      optionsDropdown.addClass("show");
+    });
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
     updateOption.click(() => {
       doUpdate(studs[i]);

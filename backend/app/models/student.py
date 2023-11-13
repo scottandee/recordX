@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""This contains the student class"""
+"""This script contains the student class"""
 
 from app.models import db
 
 
+# This is a list of possible genders a student can have
 gender = ["Male", "Female"]
 
 

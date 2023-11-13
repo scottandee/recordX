@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This contains the faculty class"""
+"""This script contains the faculty class"""
 
 from app.models import db
 

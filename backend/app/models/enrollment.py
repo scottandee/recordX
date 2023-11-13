@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""This contains the enrollment class"""
+"""This script contains the enrollment class"""
 
 from app.models import db
 
 
+# List of possible grades that a student can have
 grades = ["A", "B", "C", "D", "E", "Nil"]
 
 
