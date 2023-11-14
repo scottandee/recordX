@@ -2,7 +2,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
-
+# Instantiation of an SQLAlchemy instance
 db = SQLAlchemy()
 
 from app.models.faculty import Faculty
