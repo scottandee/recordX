@@ -8,6 +8,7 @@ def link_course_to_student(student_id, course_id, grade):
     """This function links a student to a course and
     sets the grade if one is specified
     """
+    # Retreive the specified student and course from the db
     student = Student.query.filter_by(id=student_id).first()
     if student is None:
         return -1
@@ -33,4 +34,4 @@ def link_course_to_student(student_id, course_id, grade):
         db.session.add(course)
         db.session.add(student)
         db.session.commit()
-        return 0
+    return 0

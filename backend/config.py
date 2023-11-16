@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This contains the configuration for
-our database
+the application
 """
 
 import os

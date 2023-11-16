@@ -7,11 +7,13 @@ from flask import abort, jsonify, request
 from datetime import datetime
 
 from app.api.v1.views import api_v1
-from app.utils.dict_cleanup import dict_cleanup
 from app.utils.enrollments import link_course_to_student
 from app.models import db
 from app.models.student import Student
 from app.models.department import Department
+
+# This will be used to convert our class instances into dict repr.
+from app.utils.dict_cleanup import dict_cleanup
 
 
 @api_v1.route(
@@ -21,18 +23,20 @@ def get_students_in_department(id):
     """This returns all of the students
     that belong to the specified department
     """
-    # get dept with id specified
+    # Get dept with id specified
     dept = Department.query.filter_by(id=id).first()
     if dept is None:
         abort(404)
     student_list = []
 
-    # get all the students linked to the dept
+    # Get all the students linked to the dept
     students = dept.students
 
+    # Convert all student objects into dict repr. and append to list
     for s in students:
         dict_repr = dict_cleanup(s)
         student_list.append(dict_repr)
+
     return student_list
 
 
@@ -51,7 +55,10 @@ def create_student(id):
         if r not in request.json.keys():
             abort(400, f"Missing {r}")
 
+    # Store the request query parameters in a data variable
     data = request.json
+
+    # Make sure that query parameters do not contain duplicate values
     matrics = [c.matric_number for c in Student.query.all()]
     emails = [c.email for c in Student.query.all()]
     if data["matric_number"] in matrics:
@@ -59,11 +66,12 @@ def create_student(id):
     if data["email"] in emails:
         abort(400, "email already exists")
 
-    # retrive department id specified from db
+    # Retrive department id specified from db
     dept = Department.query.filter_by(id=id).first()
     if dept is None:
         abort(404)
 
+    # Convert string into datetime
     data["dob"] = datetime.strptime(data["dob"], '%Y-%m-%d')
 
     # Filter out all specified enrollments
@@ -75,22 +83,22 @@ def create_student(id):
         except ValueError:
             continue
 
-    # cleanse the data dict of all enrollmens
+    # Cleanse the data dict of all enrollmens
     for key in enrollments.keys():
         del data[key]
 
-    # create a new student with specified data
+    # Create a new student with specified data
     student = Student(**data)
     dict_repr = dict_cleanup(student)
 
-    # add the created student to the department that was just
+    # Add the created student to the department that was just
     # retreived from the db
     dept.students.append(student)
     db.session.add(student)
     db.session.add(dept)
     db.session.commit()
 
-    # add all course enrollments to the student
+    # Add all course enrollments to the student
     student = Student.query.filter_by(email=dict_repr["email"]).first()
     for key, value in enrollments.items():
         e = link_course_to_student(student.id, int(key), value)
@@ -118,7 +126,8 @@ def update_student(id):
         if data["email"] in emails:
             abort(400, "email already exists")
 
-    data["dob"] = datetime.strptime(data["dob"], '%Y-%m-%d')
+    if data.get("dob"):
+        data["dob"] = datetime.strptime(data["dob"], '%Y-%m-%d')
 
     # Filter out all specified enrollments
     enrollments = {}
@@ -129,16 +138,16 @@ def update_student(id):
         except ValueError:
             continue
 
-    # cleanse the data dict of all enrollmens
+    # Cleanse the data dict of all enrollmens
     for key in enrollments.keys():
         del data[key]
 
-    # retrieve student to be updated from db
+    # Retrieve student to be updated from db
     student = Student.query.filter_by(id=id).first()
     if student is None:
         abort(404)
 
-    # update the student with values specified
+    # Update the student with values specified
     for key, value in data.items():
         setattr(student, key, value)
 
@@ -181,11 +190,12 @@ def students_search():
     student_list = []
     students = None
 
-    # check if a department id is specified.
+    # Check if a department id is specified.
     if data.get("department_id"):
         dept = Department.query.filter_by(id=data.get("department_id")).first()
         if dept is None:
             abort(404)
+        # Check if a course id is specified.
         if data.get("course_id"):
             courses = dept.courses
             cse = None
@@ -202,12 +212,13 @@ def students_search():
     else:
         students = Student.query.all()
 
+    # Convert all student objects into dict repr and append to list
     for s in students:
         dict_repr = dict_cleanup(s)
         dict_repr["dob"] = dict_repr["dob"].strftime('%Y-%m-%d')
         student_list.append(dict_repr)
 
-    # check if there's a search pattern defined
+    # Check if there's a search pattern defined
     if data.get("pattern"):
         filtered = []
         search = "[a-zA-Z]*{}[a-zA-Z]*".format(data.get("pattern"))

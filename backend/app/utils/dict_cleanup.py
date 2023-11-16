@@ -10,6 +10,7 @@ def dict_cleanup(obj):
     a resource and returns the cleaned up
     dictionary representation
     """
+
     dic = obj.__dict__.copy()
     if "_sa_instance_state" in dic.keys():
         del dic["_sa_instance_state"]

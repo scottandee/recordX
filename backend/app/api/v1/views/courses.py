@@ -19,15 +19,18 @@ def get_courses_in_department(id):
     """This returns all of the courses
     that belong to the specified department
     """
-    # get dept with id specified
+    # Retreive the dept object
     dept = Department.query.filter_by(id=id).first()
+
+    # Return not found if the department is not in the db
     if dept is None:
         abort(404)
     course_list = []
 
-    # get all the courses linked to the dept
+    # Get all the courses linked to the dept
     courses = dept.courses
 
+    # Convert all courses into dict repr
     for c in courses:
         dict_repr = dict_cleanup(c)
         course_list.append(dict_repr)
@@ -49,7 +52,11 @@ def create_course(id):
         abort(400, "Missing code")
     if "description" not in request.json.keys():
         abort(400, "Missing description")
+
+    # Store the request query parameters in a data variable
     data = request.json
+
+    # Ensure that the values provided don't already exist
     titles = [c.title for c in Course.query.all()]
     codes = [c.code for c in Course.query.all()]
     if data["title"] in titles:
@@ -57,16 +64,16 @@ def create_course(id):
     if data["code"] in codes:
         abort(400, "title already exists")
 
-    # retrive department id specified from db
+    # Retrive department id specified from db
     dept = Department.query.filter_by(id=id).first()
     if dept is None:
         abort(404)
 
-    # create a new course with specified values
+    # Create a new course with specified values
     course = Course(**data)
     dict_repr = dict_cleanup(course)
 
-    # add the created course to the department that was just
+    # Add the created course to the department that was just
     # retreived from the db
     dept.courses.append(course)
     db.session.add(course)
@@ -84,20 +91,32 @@ def update_course(id):
         abort(400, "Not a JSON")
     data = request.json
 
-    if "title" in data.keys():
-        titles = [c.title for c in Course.query.all()]
-        if data["title"] in titles:
-            abort(400, "Title already exists")
-
-    if "code" in data.keys():
-        codes = [c.code for c in Course.query.all()]
-        if data["code"] in codes:
-            abort(400, "Code already exists")
-
     # retrieve course to be updated from db
     course = Course.query.filter_by(id=id).first()
     if course is None:
         abort(404)
+
+    if "title" in data.keys():
+        # Retrieve the current title value
+        course_title = Course.query.filter_by(id=id).first().title
+
+        # Check if the title is the same as the current title value
+        # before checking for duplicates
+        if data.get("title") != course_title and data.get("title") is None:
+            titles = [c.title for c in Course.query.all()]
+            if data["title"] in titles:
+                abort(400, "Title already exists")
+
+    if "code" in data.keys():
+        # Retreive current code value
+        course_code = Course.query.filter_by(id=id).first().code
+
+        # Check if the title is the same as the current title value
+        # before checking for duplicates
+        if data.get("code") != course_code and data.get("code") is None:
+            codes = [c.code for c in Course.query.all()]
+            if data["code"] in codes:
+                abort(400, "Code already exists")
 
     # update the course with values specified
     for key, value in data.items():
