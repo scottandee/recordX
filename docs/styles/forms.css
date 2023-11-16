@@ -1,3 +1,4 @@
+/* This file contains styles for the update and create forms */
 .popup-form{
     margin: auto;
     border: 1px solid #6C63FF;
@@ -124,28 +125,3 @@ input#gender {
 .cour-name{
     margin-right: 20px;
 }
-/* @media (max-width: 590px){
-    label{
-        font-size: 13px;
-    }
-    
-}
-@media (max-width: 320px){
-    label{
-        font-size: 12px;
-    }
-    .input-fields{
-        margin-bottom: 15px;
-    }
-    .create-new-form{
-        padding: 10px 15px;
-    }
-    .selected-courses p {
-        font-size: 12px;
-        padding: 5px;
-    }
-    #grade{
-        font-size: 12px;
-        justify-content: center;
-    }
-} */

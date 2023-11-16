@@ -1,3 +1,4 @@
+/* This contains styles for the dashboard page */
 section.stats{
     display: grid;
     grid-template-columns: repeat(2, 350px);

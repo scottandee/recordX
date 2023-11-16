@@ -1,3 +1,5 @@
+/* This contains styles for the options that is added to each
+   resource card */
 .options {
     position: relative;
     display: flex;
@@ -35,12 +37,6 @@
 }
 .delete:hover{
     border-bottom: 1px solid #6C63FF;
-}
-@media (min-width: 500px) {
-    .options:hover .options-dropdown{
-        display: flex;
-        flex-direction: column;
-    }    
 }
 .show{
     display: flex;

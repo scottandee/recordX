@@ -1,0 +1,112 @@
+/* This contains styles for actions section i.e create-new and search bar
+   section pf the page */
+section.actions{
+    display: flex;
+    justify-content: space-between;
+    margin: 3% 0;
+    height: 50px;
+}
+form.search-box{
+    display: flex;
+    align-items: center;
+    border: 2px solid #6C63FF;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 700px;
+}
+form.search-box input{
+    background: transparent;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    flex: 1;
+    width: 85%;
+    padding: 0px 3%;
+}
+#search-dropdown{
+    outline: none;
+    border: none;
+    border-left: 2px solid #6C63FF;
+    background: transparent;
+    font-size: 14px;
+    color: #6C63FF;
+    height: 100%;
+    font-family: inherit;
+    min-width: 50px;
+    width: 20%;
+}
+
+form.search-box button{
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    width: 15%;
+    height: 100%;
+    background-color: #6C63FF;
+    cursor: pointer;
+}
+form.search-box button:hover{
+    background-color: #661bff;
+}
+form.search-box button .fa-search{
+    color: white;
+    font-size: 17px;
+}
+button.create-new{
+    border: 0;
+    background-color: #6C63FF;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+button.create-new:hover{
+    background-color: #661bff;
+}
+button.create-new{
+    color: white;
+    font-size: 15px;
+}
+button.create-new p{
+    margin-left: 10px;
+    text-align: center;
+}
+@media (max-width: 590px) {
+    button.create-new, 
+    form.search-box button,
+     .fa-search,
+      form.search-box input, p{
+        font-size: 14px;
+    }
+    button.create-new p{
+        margin-left: 5px;
+    }
+    button.create-new{
+        padding: 10px;
+    }
+}
+@media (max-width: 525px) {
+    form.search-box input{
+        padding-right: 0px;
+    }
+    button.create-new p{
+        display: none;
+    }
+    button.create-new{
+        width: 60px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media (max-width: 420px){
+    button.create-new,
+    form.search-box button,
+    .fa-search, form.search-box input, p{
+        font-size: 13px;
+    } 
+}
+@media (max-width: 320px){
+    form.search-box {
+        width: 70%;
+    }
+}
