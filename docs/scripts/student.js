@@ -2,6 +2,7 @@
 // This script contains functions to display
 // dynamic content on the students page
 
+
 // This function renders all filters for faculty and department
 function loadFilters (data, target, name) {
   let option = $('<option>');
@@ -47,6 +48,7 @@ function doDelete (id, resourceName) {
   });
 }
 
+// This function handles the update action
 function doUpdate (student) {
   // retreive and open the edit faculty modal
   const modal = $('[data-update-modal]');
@@ -123,6 +125,8 @@ function doUpdate (student) {
   });
 }
 
+// This function retreives a student's details from the
+// API and displays it in the details modal.
 function showStudentDetails (student) {
   $.ajax({
     type: 'GET',
@@ -155,8 +159,16 @@ function showStudentDetails (student) {
   });
   $('[data-details]')[0].showModal();
 }
+
+// This function loads up the students that are part
+// of the studs parameter that is passed into the function
+// onto the app
 function loadStudents (studs) {
-  const students = $('section.resources');
+  const studentSection = $('section#students');
+  studentSection.append($('<h2>').text('Students'));
+  studentSection.append($('<div>').addClass('resources'));
+  const students = $('div.resources');
+
   for (let i = 0; i < Object.keys(studs).length; i++) {
     const card = $('<div>').addClass('card');
     const img = $('<img>');
@@ -183,11 +195,11 @@ function loadStudents (studs) {
     resData.append($('<p>').text(studs[i].matric_number));
 
     const resOptions = $('<div>').attr('id', 'option-' + studs[i].id);
-    resOptions.addClass('options')
+    resOptions.addClass('options');
     const optionsDropdown = $('<div>').addClass('options-dropdown');
     optionsDropdown.attr('data-student-id', studs[i].id);
     resOptions.click(() => {
-      optionsDropdown.addClass("show");
+      optionsDropdown.addClass('show');
     });
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
     updateOption.click(() => {
@@ -211,6 +223,7 @@ function loadStudents (studs) {
 
     students.append(card);
   }
+  studentSection.append(students);
 }
 
 // This function dynamically creates a grade dropdown
@@ -305,6 +318,7 @@ $(document).ready(() => {
     }
   });
 });
+
 $(document).ready(() => {
   const addCourseButton = $('#edit');
   const selected = $('#selected-courses-update');
@@ -339,6 +353,7 @@ $(document).ready(() => {
     added = [];
   });
 });
+
 // This section of code loads up departments for the `create new` form
 $(document).ready(() => {
   $.ajax({

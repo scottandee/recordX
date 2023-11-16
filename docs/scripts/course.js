@@ -1,5 +1,10 @@
 #!/usr/bin/node
+// This script contains functions to display
+// dynamic content onto the courses page
 
+
+// This function adds all departments into the select filters
+// in the search bar and create new form.
 function loadFilters (depts) {
   // retrieve both the form and search box drop-down element
   const createFilter = $('select#res-filter');
@@ -26,6 +31,8 @@ function doDelete (id, resourceName) {
     }
   });
 }
+
+// This function handles the update action
 function doUpdate (course) {
   // retreive and open the edit faculty modal
   const modal = $('[data-update-modal]');
@@ -72,6 +79,8 @@ function doUpdate (course) {
   });
 }
 
+// This function retrieves a course's details from the
+// API and displays them in the details modal.
 function showCourseDetails (course) {
   $.ajax({
     type: 'GET',
@@ -86,11 +95,15 @@ function showCourseDetails (course) {
   $('.course-instructor').text(course.instructor);
   $('[data-details]')[0].showModal();
 }
+
 // This function loads up the courses that are part
 // of the course parameter that is passed into the function
 // onto the app
 function loadCourses (courses) {
-  const coursesDisplay = $('section.resources');
+  const coursesSection = $('section#course');
+  coursesSection.append($('<h2>').text('Courses'));
+  coursesSection.append($('<div>').addClass('resources'));
+  const coursesDisplay = $('div.resources');
   for (let i = 0; i < Object.keys(courses).length; i++) {
     const card = $('<div>').addClass('card dept-card');
     const banner = $('<div>').addClass('card-banner-faculty');
@@ -110,7 +123,7 @@ function loadCourses (courses) {
     const optionsDropdown = $('<div>').addClass('options-dropdown');
     optionsDropdown.attr('data-course-id', courses[i].id);
     resOptions.click(() => {
-      optionsDropdown.addClass("show");
+      optionsDropdown.addClass('show');
     });
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
@@ -134,8 +147,10 @@ function loadCourses (courses) {
 
     coursesDisplay.append(card);
   }
+  coursesSection.append(coursesDisplay);
 }
 
+// This section of code retreives all departments from the API
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
@@ -187,7 +202,7 @@ $(document).ready(() => {
     contentType: 'application/json',
     data: JSON.stringify({}),
     success: (courses) => {
-      $('section.resources').empty();
+      $('section#course').empty();
       loadCourses(courses);
     }
   });
@@ -211,7 +226,7 @@ $(document).ready(() => {
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (courses) => {
-        $('section.resources').empty();
+        $('section#course').empty();
         loadCourses(courses);
       }
     });

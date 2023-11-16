@@ -30,8 +30,8 @@ $(function () {
   });
 });
 
-$(document).on('click', function(event) {
+$(document).on('click', function (event) {
   if (!$(event.target).closest('.options').length) {
-    $(".options-dropdown").removeClass('show');
+    $('.options-dropdown').removeClass('show');
   }
 });

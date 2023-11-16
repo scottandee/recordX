@@ -1,4 +1,7 @@
 #!/usr/bin/node
+// This script contains functions to display
+// dynamic content onto the department page
+
 
 // This function loads all faculties from db into dropdown
 function loadFilters (faculties) {
@@ -15,6 +18,7 @@ function loadFilters (faculties) {
     searchFilter.append(option);
   }
 }
+
 // This fuction sends a delete request for the specified
 // id and resource name
 function doDelete (id, resourceName) {
@@ -26,6 +30,8 @@ function doDelete (id, resourceName) {
     }
   });
 }
+
+// This function handles the update action
 function doUpdate (dept) {
   // retreive and open the edit faculty modal
   const modal = $('[data-update-modal]');
@@ -71,6 +77,8 @@ function doUpdate (dept) {
   });
 }
 
+// This function retrieves a department's details from the
+// API and displays them in the details modal.
 function showDeptDetails (dept) {
   $.ajax({
     type: 'GET',
@@ -89,7 +97,11 @@ function showDeptDetails (dept) {
 // of the data parameter that is passed into the function
 // onto the app
 function loadDepartments (depts) {
-  const departments = $('section.resources');
+  const deptSection = $('section#departments');
+  deptSection.append($('<h2>').text('Departments'));
+  deptSection.append($('<div>').addClass('resources'));
+  const departments = $('div.resources');
+
   for (let i = 0; i < Object.keys(depts).length; i++) {
     const card = $('<div>').addClass('card dept-card');
     const banner = $('<div>').addClass('card-banner-faculty');
@@ -108,7 +120,7 @@ function loadDepartments (depts) {
     const optionsDropdown = $('<div>').addClass('options-dropdown');
     optionsDropdown.attr('data-department-id', depts[i].id);
     resOptions.click(() => {
-      optionsDropdown.addClass("show");
+      optionsDropdown.addClass('show');
     });
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
@@ -131,6 +143,7 @@ function loadDepartments (depts) {
 
     departments.append(card);
   }
+  deptSection.append(departments);
 }
 
 // This section of code requests for all of the faculties
@@ -157,7 +170,7 @@ $(document).ready(() => {
     contentType: 'application/json',
     data: JSON.stringify({}),
     success: (depts) => {
-      $('section.resources').empty();
+      $('section#departments').empty();
       loadDepartments(depts);
     }
   });
@@ -212,7 +225,7 @@ $(document).ready(() => {
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (depts) => {
-        $('section.resources').empty();
+        $('section#departments').empty();
         console.log(depts);
         loadDepartments(depts);
       }

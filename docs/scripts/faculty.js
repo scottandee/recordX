@@ -1,4 +1,7 @@
 #!/usr/bin/node
+// This script contains functions to display
+// dynamic content onto the faculty page
+
 
 // This fuction sends a delete request for the specified
 // id and resource name
@@ -12,6 +15,7 @@ function doDelete (id, resourceName) {
   });
 }
 
+// This function handles the update action
 function doUpdate (fac) {
   // retreive and open the edit faculty modal
   const modal = $('[data-update-modal]');
@@ -49,17 +53,23 @@ function doUpdate (fac) {
   });
 }
 
+// This function retrieves a faculty's details from the
+// API and displays them in the details modal.
 function showFacultyDetails (faculty) {
   $('.fac-name').text(faculty.name);
   $('.fac-description').text(faculty.description);
   $('[data-details]')[0].showModal();
 }
+
 // This function loads up the faculties that are part
 // of the facs parameter that is passed into the function
 // onto the app
 function loadFaculties (facs) {
   // reterive the container element that will contain all faculties
-  const faculties = $('section.resources');
+  const facultySection = $('section#faculties');
+  facultySection.append($('<h2>').text('Faculties'));
+  facultySection.append($('<div>').addClass('resources'));
+  const faculties = $('div.resources');
 
   // loop through all the facs
   for (let i = 0; i < Object.keys(facs).length; i++) {
@@ -76,12 +86,12 @@ function loadFaculties (facs) {
     resData.append($('<h4>').text(facs[i].name));
 
     const resOptions = $('<div>').addClass('options');
-    resOptions.attr('id', 'option-' + facs[i].id);    
+    resOptions.attr('id', 'option-' + facs[i].id);
     const optionsDropdown = $('<div>').addClass('options-dropdown');
     optionsDropdown.attr('data-faculty-id', facs[i].id);
     resOptions.click(() => {
-      optionsDropdown.addClass("show");
-    })
+      optionsDropdown.addClass('show');
+    });
 
     const updateOption = $('<div>').addClass('update').html('<p>Update</p>');
     updateOption.click(() => {
@@ -103,7 +113,9 @@ function loadFaculties (facs) {
 
     faculties.append(card);
   }
+  facultySection.append(faculties);
 }
+
 // This section of code loads up all of the faculties
 // from the db when the page is loaded
 $(document).ready(() => {
@@ -114,7 +126,7 @@ $(document).ready(() => {
     contentType: 'application/json',
     data: JSON.stringify({}),
     success: (facs) => {
-      $('section.resources').empty();
+      $('section#faculties').empty();
       loadFaculties(facs);
     }
   });
@@ -166,7 +178,7 @@ $(document).ready(() => {
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (facs) => {
-        $('section.resources').empty();
+        $('section#faculties').empty();
         console.log(facs);
         loadFaculties(facs);
       }
