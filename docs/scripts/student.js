@@ -423,7 +423,7 @@ $(document).ready(() => {
     contentType: 'application/json',
     data: JSON.stringify({}),
     success: (students) => {
-      $('section.resources').empty();
+      $('section#students').empty();
       loadStudents(students);
     }
   });
@@ -448,7 +448,7 @@ $(document).ready(() => {
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (students) => {
-        $('section.resources').empty();
+        $('section#students').empty();
         console.log(students);
         loadStudents(students);
       }

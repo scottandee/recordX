@@ -86,6 +86,9 @@ button.create-new p{
     }
 }
 @media (max-width: 525px) {
+    form.search-box, button.create-new{
+        height: 40px;
+    }
     form.search-box input{
         padding-right: 0px;
     }
