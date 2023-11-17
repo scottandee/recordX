@@ -24,7 +24,7 @@ def link_course_to_student(student_id, course_id, grade):
     if existing_enrollment:
         existing_enrollment.grade = grade
     else:
-        if grade is not "Nil":
+        if grade != "Nil":
             e = Enrollment(grade=grade)
         else:
             e = Enrollment()
