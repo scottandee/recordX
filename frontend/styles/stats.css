@@ -1,0 +1,19 @@
+/* This contains styles for the dashboard page */
+section.stats{
+    display: grid;
+    grid-template-columns: repeat(2, 350px);
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    margin: auto;
+    padding: 50px;
+}
+.grid-item h2{
+    font-size: 100px;
+}
+@media (max-width: 821px) {
+    section.stats{
+        grid-template-columns: repeat(1, 1fr);
+    }    
+}

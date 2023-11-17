@@ -1,0 +1,127 @@
+/* This file contains styles for the update and create forms */
+.popup-form{
+    margin: auto;
+    border: 1px solid #6C63FF;
+    border-radius: 10px;
+    width: 450px;
+}
+.details-dialog{
+    margin: auto;
+    border: 1px solid #6C63FF;
+    border-radius: 10px;
+    width: 425px;
+}
+.create-new-banner{
+    width: 100%;
+    background-color: #6C63FF;
+    height: 50px;
+}
+.create-new-form, #enrollments{
+    padding: 20px 30px;
+}
+.create-new-form h3,
+.details-data h3{
+    color: #6C63FF;
+    margin-bottom: 16px;
+}
+.create-new-banner i.fa-times{
+    display: block;
+    color: white;
+    text-align: right;
+    padding-top: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+input, select {
+    font-size: 15px;
+}
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.input-fields p{
+    font-size: 15px;
+}
+label{
+    margin-bottom: 5px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.input-fields input,
+select#res-filter,
+.added-course, #grade,
+#courses, #put-courses {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #6C63FF;
+}
+.input-fields input:focus,
+select#res-filter:focus,
+.added-course:focus, #grade:focus
+#courses:focus, #put-courses:focus{
+    outline: 2px solid #6C63FF;
+    border: 0;
+}
+.create {
+    padding: 10px;
+    background-color: #6C63FF;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    text-align: right;
+}
+.popup-form-button-sect{
+    text-align: right;
+    padding: 20px 0px;
+}
+select#res-filter, #grade, #courses,
+#put-courses {
+    background: white;
+}
+.added-course{
+    margin-bottom: 5px;
+    font-size: 14px;
+    list-style: decimal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-course{
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+.select-course select{
+    width: 80%;
+    margin-right: 5px;
+    
+}
+.added-course i{
+    color: #6C63FF;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+div.radio{
+    flex-direction: row;
+}
+input#gender {
+    margin-right: 5px;
+    display: block;
+}
+.gender-label{
+    margin-right: 10px;
+}
+.details-data{
+    padding: 20px 30px;
+}
+.enroll {
+    display: flex;
+    justify-content: space-between;
+}
+.cour-name{
+    margin-right: 20px;
+}
