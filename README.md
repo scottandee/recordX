@@ -19,7 +19,7 @@
 <br />
 
 ## 🚀 Introduction
-Welcome to RecordX, your go-to tool for efficient management and organisation of academic data in educational institutions. Engineered for simplicity and effectiveness, RecordX offers a user-friendly environment to seamlessly handle all create, delete, read, and update operations related to academic records.
+Welcome to RecordX, a tool built to provide efficient management and organisation of academic records in educational institutions. Engineered for simplicity and effectiveness, RecordX offers a user-friendly environment to seamlessly handle all create, delete, read, and update operations related to academic records.
 
 <p align="center">
   <img src="https://i.imgur.com/yLx0D1p.png" align="center">
@@ -27,7 +27,7 @@ Welcome to RecordX, your go-to tool for efficient management and organisation of
 
 ### ✨Key Features:
 * **Intuitive Interface**: Navigate academic data effortlessly with our user-friendly interface.
-* **Comprehensive Operations**: Perform create, delete, read, and update operations with ease.
+* **Effortless Operations**: Perform create, delete, read, and update operations with ease.
 * **Data Organisation**: Streamline the management and organisation of academic records effortlessly.
 * **Enhanced Efficiency**: Save time and resources by leveraging RecordX's powerful capabilities.
 
