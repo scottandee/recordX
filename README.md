@@ -57,7 +57,7 @@ For more in-depth information about the development journey, challenges, and ins
 
 <br />
 
-## Project Structure
+## 📂 Project Structure
 ### Backend `/backend`
 This folder contains all backend-related logic, including:
 * `/app`: The main Flask application.
@@ -191,7 +191,7 @@ Here are some steps to follow when contributing to this project:
 
 <br />
 
-## ⚖️ Licensing
+## 📜 Licensing
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 Copyright (c) 2023 Olayinkascott Andee.
