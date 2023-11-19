@@ -7,13 +7,13 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="##-introduction">Introduction</a></li>
-    <li><a href="##-technologies-used">Technologies Used</a></li>
-    <li><a href="##-project-structure">Project Structure</a></li>
-    <li><a href="##-installation">Installation</a></li>
-    <li><a href="##-usage">Usage</a></li>
-    <li><a href="##-contributing">Contributing</a></li>
-    <li><a href="##-licensing">Licensing</a></li>
+    <li><a href="#-introduction">Introduction</a></li>
+    <li><a href="#-technologies-used">Technologies Used</a></li>
+    <li><a href="#-project-structure">Project Structure</a></li>
+    <li><a href="#-installation">Installation</a></li>
+    <li><a href="#-usage">Usage</a></li>
+    <li><a href="#-contributing">Contributing</a></li>
+    <li><a href="#-licensing">Licensing</a></li>
   </ol>
 </details>
 <br />
