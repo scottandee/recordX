@@ -152,6 +152,7 @@ $(document).ready(() => {
         location.reload();
       },
       error: (error) => {
+        console.log(error);
         const errorMessage = error.responseJSON.error;
         alert(errorMessage);
       }
