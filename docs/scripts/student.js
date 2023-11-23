@@ -41,7 +41,7 @@ function loadCourseFilters (data, target, name) {
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/' + resourceName + '/' + id,
     success: () => {
       location.reload();
     }
@@ -57,7 +57,7 @@ function doUpdate (student) {
   // Fill the form with the existing values
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/departments/' + student.department_id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + student.department_id,
     success: (dept) => {
       $('.dept-name').text(dept.name);
     }
@@ -73,7 +73,7 @@ function doUpdate (student) {
   // load up courses in the department that is to be edited
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/departments/' + student.department_id + '/courses',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + student.department_id + '/courses',
     success: (courses) => {
       loadCourseFilters(courses, 'SELECT#put-courses', 'Course');
     }
@@ -82,7 +82,7 @@ function doUpdate (student) {
   // retreive courses selected by student and fill them into the edit form
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1//students/' + student.id + '/courses',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1//students/' + student.id + '/courses',
     success: (stuCourses) => {
       console.log(stuCourses);
       // $('#selected-courses-update').empty();
@@ -108,7 +108,7 @@ function doUpdate (student) {
     console.log(data);
     $.ajax({
       type: 'PUT',
-      url: 'https://www.scottandee.tech/api/v1/students/' + student.id,
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/students/' + student.id,
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -130,7 +130,7 @@ function doUpdate (student) {
 function showStudentDetails (student) {
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/departments/' + student.department_id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + student.department_id,
     success: (dept) => {
       $('.stu-dept-name').text(dept.name);
     }
@@ -144,7 +144,7 @@ function showStudentDetails (student) {
   $('.stu-gender').text(student.gender);
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1//students/' + student.id + '/courses',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1//students/' + student.id + '/courses',
     success: (stuCourses) => {
       $('#selected-courses-dialog').empty();
       if (stuCourses.length === 0) {
@@ -248,7 +248,7 @@ function createGradeDropDown (courseId) {
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/faculties',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties',
     success: (faculties) => {
       loadFilters(faculties, 'select#search-dropdown.fac', 'Faculty');
     }
@@ -265,7 +265,7 @@ $(document).ready(() => {
     const facId = selectedDept.attr('value');
     $.ajax({
       type: 'GET',
-      url: 'https://www.scottandee.tech/api/v1/faculties/' + facId + '/departments',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties/' + facId + '/departments',
       success: (depts) => {
         loadFilters(depts, 'select#search-dropdown.dept', 'Departments');
       }
@@ -358,7 +358,7 @@ $(document).ready(() => {
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/departments',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments',
     success: (depts) => {
       loadFilters(depts, 'SELECT#res-filter', 'Department');
     }
@@ -375,7 +375,7 @@ $(document).ready(() => {
     const deptId = selectedDept.attr('value');
     $.ajax({
       type: 'GET',
-      url: 'https://www.scottandee.tech/api/v1/departments/' + deptId + '/courses',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + deptId + '/courses',
       success: (courses) => {
         loadCourseFilters(courses, 'SELECT#courses', 'Course');
       }
@@ -397,7 +397,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/departments/' + deptId + '/students',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + deptId + '/students',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -418,7 +418,7 @@ $(document).ready(() => {
 $(document).ready(() => {
   $.ajax({
     type: 'POST',
-    url: 'https://www.scottandee.tech/api/v1/students_search',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/students_search',
     datatype: 'json',
     contentType: 'application/json',
     data: JSON.stringify({}),
@@ -443,7 +443,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/students_search',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/students_search',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),

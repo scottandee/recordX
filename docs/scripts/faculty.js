@@ -8,7 +8,7 @@
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/' + resourceName + '/' + id,
     success: () => {
       location.reload();
     }
@@ -36,7 +36,7 @@ function doUpdate (fac) {
     console.log(data);
     $.ajax({
       type: 'PUT',
-      url: 'https://www.scottandee.tech/api/v1/faculties/' + fac.id,
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties/' + fac.id,
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -121,7 +121,7 @@ function loadFaculties (facs) {
 $(document).ready(() => {
   $.ajax({
     type: 'POST',
-    url: 'https://www.scottandee.tech/api/v1/faculties_search',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties_search',
     datatype: 'json',
     contentType: 'application/json',
     data: JSON.stringify({}),
@@ -142,7 +142,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/faculties',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties',
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -174,7 +174,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/faculties_search',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties_search',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),

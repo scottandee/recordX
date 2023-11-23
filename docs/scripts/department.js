@@ -24,7 +24,7 @@ function loadFilters (faculties) {
 function doDelete (id, resourceName) {
   $.ajax({
     type: 'DELETE',
-    url: 'https://www.scottandee.tech/api/v1/' + resourceName + '/' + id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/' + resourceName + '/' + id,
     success: () => {
       location.reload();
     }
@@ -40,7 +40,7 @@ function doUpdate (dept) {
   // Fill the form with the existing values
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/faculties/' + dept.faculty_id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties/' + dept.faculty_id,
     success: (fac) => {
       $('.fac-name').text(fac.name);
     }
@@ -60,7 +60,7 @@ function doUpdate (dept) {
     console.log(data);
     $.ajax({
       type: 'PUT',
-      url: 'https://www.scottandee.tech/api/v1/departments/' + dept.id,
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments/' + dept.id,
       dataType: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -82,7 +82,7 @@ function doUpdate (dept) {
 function showDeptDetails (dept) {
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/faculties/' + dept.faculty_id,
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties/' + dept.faculty_id,
     success: (fac) => {
       $('.fac-name').text(fac.name);
     }
@@ -153,7 +153,7 @@ function loadDepartments (depts) {
 $(document).ready(() => {
   $.ajax({
     type: 'GET',
-    url: 'https://www.scottandee.tech/api/v1/faculties',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties',
     success: (faculties) => {
       loadFilters(faculties);
     }
@@ -165,7 +165,7 @@ $(document).ready(() => {
 $(document).ready(() => {
   $.ajax({
     type: 'POST',
-    url: 'https://www.scottandee.tech/api/v1/departments_search',
+    url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments_search',
     datatype: 'json',
     contentType: 'application/json',
     data: JSON.stringify({}),
@@ -190,7 +190,7 @@ $(document).ready(() => {
     const data = Object.fromEntries(formData);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/faculties/' + facultyId + '/departments',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/faculties/' + facultyId + '/departments',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
@@ -220,7 +220,7 @@ $(document).ready(() => {
     console.log(data);
     $.ajax({
       type: 'POST',
-      url: 'https://www.scottandee.tech/api/v1/departments_search',
+      url: 'https://recordx-0b6779f5e001.herokuapp.com/api/v1/departments_search',
       datatype: 'json',
       contentType: 'application/json',
       data: JSON.stringify(data),
